@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>It is tours page</p>
+    <p th:text="${tour.title}"></p>
+    <form th:action="'/tours/delete/'+${tour.id}" method="post">
+        <input type="submit" value="Del"/>
+    </form>
+</body>
+</html>

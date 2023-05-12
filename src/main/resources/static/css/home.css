@@ -1,0 +1,179 @@
+
+.main_info-block{
+    position: absolute;
+    top: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+}
+.mini_intro{
+    width: 275px;
+}
+.title__text{
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 80px;
+    color: #FFFFFF;
+    margin-bottom: 30px;
+}
+.subtitle__text{
+    color: #FFFFFF;
+    font-weight: 200;
+    font-size: 16px;
+    margin-bottom: 23px;
+}
+.main__button{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 208px;
+    height: 44px;
+    background: #7d9c6b;
+    box-shadow: 0px 0px 10px 3px rgba(132, 184, 113, 0.3);
+    border-radius: 90px;
+}
+.main__button:hover{
+    opacity: 0.75;
+    transition-duration: 0.5s;
+}
+.button__text{
+    margin: auto;
+    padding-left: 30px;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+.button__arrow{
+    margin: auto;
+}
+.intro__karte img{
+    width: 830px;
+}
+
+.main_info-intro{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 630px;
+    align-items: center;
+    padding: 10px 0 ;
+}
+
+.intro__title{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 29px;
+    color: #FFB35F;
+    margin-bottom: 15px;
+}
+.intro__characteristics{
+    display: flex;
+    color: #FFFFFF;
+}
+.char__items:not(:last-child){
+    margin-right: 34px;
+}
+.char__item{
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 23px;
+    margin-bottom: 4px;
+}
+.char__sub-item{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+}
+/* =====introEND============================================================== */
+/* =====enter START============================================================== */
+
+.main__enter-block{
+    text-align: center;
+    margin: 0 auto;
+}
+.enter__img{
+    margin: 60px 100px 40px;
+    text-align: center;
+}
+.enter-pic:not(:last-child){
+    margin-right: 20px;
+}
+.enter__text{
+    margin: 0 auto;
+    width: 920px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+/* =====enter END============================================================== */
+/* =====Map STart============================================================== */
+
+.main__map-about{
+    background-color: #191B32;
+    text-align: center;
+    padding-bottom: 60px;
+}
+.m_a__title{
+    font-size: 30px;
+    line-height: 40px;
+    color: #FFFFFF;
+    padding-bottom: 30px;
+}
+
+/* =====Map END============================================================== */
+/* =====ABout Start============================================================== */
+
+
+.about__item{
+    font-size: 26px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+.slider-pic{
+    width: 370px;
+}
+.slider__items{
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    text-align: left;
+    justify-content: center;
+    padding: 0 20px 30px;
+}
+.slider-text{
+    font-weight: 200;
+    font-size: 18px;
+    width: 530px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+.slider-pics{
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+}
+
+/* =====About END============================================================== */
+/* =====Video START============================================================== */
+
+.main__video{
+    width: 1200px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.video-title{
+    font-size: 34px;
+    color: #1A2458;
+    margin-bottom: 40px;
+}
+
+
+/* =====About END============================================================== */

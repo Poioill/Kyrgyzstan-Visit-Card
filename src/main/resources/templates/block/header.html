@@ -1,0 +1,47 @@
+<header class="header" th:fragment="header">
+    <div class="wrapper">
+        <div class="header__wrapper">
+            <div class="header__logo">
+                <a href="/" class="header__logo-icon">
+                    <img th:src="@{/img/svg/LOGO.svg}" alt="">
+                </a>
+            </div>
+            <nav class="header__wrap">
+                <ul class="header__list">
+                    <li class="header__list-item">
+                        <a href="#foot" class="list-item">Contacts</a>
+                    </li>
+                    <li class="header__list-item">
+                        <a href="/tours" class="list-item">Tours</a>
+                    </li>
+                    <li class="header__list-item">
+                        <a href="" class="list-item">Regions &bigtriangledown;</a>
+                        <ul>
+                            <li><a href="regions.html">Chui</a></li>
+                            <li><a href="regions.html">Naryn</a></li>
+                            <li><a href="/">Isyk-Kul</a></li>
+                            <li><a href="/">Osh</a></li>
+                            <li><a href="/">Talas</a></li>
+                            <li><a href="/">Batken</a></li>
+                            <li><a href="/">Jalal-Abad</a></li>
+                        </ul>
+                    </li>
+                    <li class="header__list-item">
+                        <a href="/articles" class="list-item">Articles</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="header__wrap">
+                <ul class="header__list">
+                    <li class="header__list-item_log">
+                        <a href="/login" class="list-item">Log in</a>
+                    </li>
+                    <li class="header__list-item_log">|</li>
+                    <li class="header__list-item_log">
+                        <a href="/registration" class="list-item">Sign up</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,97 @@
+main{
+    width: 100vw;
+    height: 100vh;
+    background-color: #2B2E6C;
+}
+.login__wrapper{
+    width: 900px;
+    display: flex;
+    margin: 0 auto;
+    height: 100%;
+    background-color: #272961;
+}
+.login__form{
+    width: 100%;
+    text-align: center;
+    padding: 0 50px;
+}
+.login-logo{
+    margin: 50px 0 30px 0;
+}
+.pic__right{
+    width: 470px;
+}
+.login__sign-in-up{
+    margin-bottom: 30px;
+}
+.sign{
+    font-weight: 200;
+    font-size: 18px;
+    color: #FFFFFF;
+    margin: 5px;
+    opacity: 0.7;
+}
+.sign:hover{
+    opacity: 1;
+    transition-duration: 0.3s;
+}
+.sign-border{
+    opacity: 1;
+    border-bottom: 2px solid #E5786C;
+    padding-bottom: 3px;
+}
+.login-title{
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 33px;
+    color: #FFFFFF;
+    text-align: left;
+    margin-bottom: 25px;
+}
+.login__actual-form{
+    display: flex;
+    flex-direction: column;
+}
+.form-item{
+    margin-bottom: 20px;
+    background-color: #47568A;
+    border-left: 4px solid #E38F41;
+    width: 322px;
+    height: 50px;
+    padding: 10px;
+}
+.form-item::placeholder{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
+    color: #C7CCDC;
+}
+.form-item:focus{
+    color: #C7CCDC;
+    -webkit-outline: none;
+    outline: none;
+}
+.form-btn{
+    width: 114px;
+    height: 43px;
+    background: #EB8870;
+    border-radius: 4px;
+    color: white;
+}
+.form-btn:hover{
+    box-shadow: 0px 0px 17px 6px rgba(233, 194, 135, 0.25);
+    transition-duration: 0.4s;
+}
+
+.login__message{
+    color: #ff4c4c;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.login-message-link{
+    color: #8688c9;
+}
+.login-message-link:hover{
+    opacity: 0.8;
+    transition-duration: 0.4s;
+}
