@@ -34,60 +34,26 @@
   </section>
   <div class="wrapper">
     <div class="info__content">
-      <form action="" method="post" class="search_form">
-        <input type="search" name="" class="search" placeholder="Search places">
-        <button type="submit" class="btn_sub">
+      <form action="/articles" method="get" class="search_form">
+        <input type="text" name="title" class="search" placeholder="Search places">
+        <input type="submit" value="" class="btn_sub">
           <img th:src="@{/img/svg/search.svg}" alt="">
-        </button>
+        </input>
       </form>
     </div>
     <section class="articles">
+      <form action="/articles/add" method="post">
+        <input type="text" name="title">
+        <input type="text" name="description">
+        <button type="submit">Add new article</button>
+      </form>
       <div class="all_articles">
-        <div class="article">
+        <div class="article" th:each="el : ${art}">
           <img th:src="@{/img/articles_1.png}" alt="" class="img__article">
           <h6 class="article__author">Elen Harry</h6>
-          <h2 class="article__title">Sary Chelek</h2>
-          <p class="article__text">Крутая гора. I like it dvsvsdvsxcsvs
-            svsdvsdvsdvsdvsdv
-            sdvsdvsdvsvsvswegethg dnr</p>
+          <h2 class="article__title" th:text="${el.title}"></h2>
+          <p class="article__text" th:text="${el.description}"></p>
           <a href="/artic" class="article__link">Read more</a>
-        </div>
-        <div class="article">
-          <img th:src="@{/img/articles_2.png}" alt="" class="img__article">
-          <h6 class="article__author">Elen Harry</h6>
-          <h2 class="article__title">Sary Chelek</h2>
-          <p class="article__text">Крутая гора. I like it dvsvsdvsxcsvs
-            svsdvsdvsdvsdvsdv
-            sdvsdvsdvsvsvswegethg рутая гора. I like it dvsvsdvsxcsvs
-            svsdvsdvsdvsdvsdv</p>
-          <a href="/artic" class="article__link">Read more</a>
-        </div>
-        <div class="article">
-          <img th:src="@{/img/articles_2.png}" alt="" class="img__article">
-          <h6 class="article__author">Elen Harry</h6>
-          <h2 class="article__title">Sary Chelek</h2>
-          <p class="article__text">Крутая гора. I like it dvsvsdvsxcsvs
-            svsdvsdvsdvsdvsdv
-            sdvsdvsdvsvsvswegethg dnКрутая го</p>
-          <a href="" class="article__link">Read more</a>
-        </div>
-        <div class="article">
-          <img th:src="@{/img/articles_2.png}" alt="" class="img__article">
-          <h6 class="article__author">Elen Harry</h6>
-          <h2 class="article__title">Sary Chelek</h2>
-          <p class="article__text">Крутая гора. I like it dvsvsdvsxcsvs
-            svsdvsdvsdvsdvsdv
-            sdvsdvsdvsvsvswegethg dnr</p>
-          <a href="" class="article__link">Read more</a>
-        </div>
-        <div class="article">
-          <img th:src="@{/img/articles_2.png}" alt="" class="img__article">
-          <h6 class="article__author">Elen Harry</h6>
-          <h2 class="article__title">Sary Chelek</h2>
-          <p class="article__text">Крутая гора. I like it dvsvsdvsxcsvs
-            svsdvsdvsdvsdvsdv
-            sdvsdvsdvsvsvswegethg dnr</p>
-          <a href="" class="article__link">Read more</a>
         </div>
       </div>
     </section>
