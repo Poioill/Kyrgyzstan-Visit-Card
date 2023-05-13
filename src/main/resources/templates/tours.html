@@ -21,10 +21,13 @@
 <header th:insert="block/header :: header"></header>
 <div class="lololo">hello hello</div>
 <p>It is tours page</p>
-<form action="/tours/add" method="post">
-    <input type="text" name="title">
-    <input type="text" name="description">
-    <input type="text" name="region">
+<form action="/tours/add" method="post" enctype="multipart/form-data">
+    <input type="text" name="title"><br>
+    <input type="text" name="description"><br>
+    <input type="text" name="region"><br>
+    <input type="file" name="file1" placeholder="Choose a pic1"><br>
+    <input type="file" name="file2" placeholder="Choose a pic2"><br>
+    <input type="file" name="file3" placeholder="Choose a pic3"><br>
     <button type="submit">Add new tour</button>
 </form>
 <form action="/tours" method="get">
@@ -34,6 +37,7 @@
 <div th:each="el : ${tour}">
     <p th:text="${el.title}"/>
     <p th:text="${el.region}"/>
+    <a th:href="'/tours/'+ ${el.id}">Read more...</a>
 </div>
 
 <footer th:insert="block/footer :: footer"></footer>
