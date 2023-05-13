@@ -35,10 +35,10 @@
   <div class="wrapper">
     <div class="info__content">
       <div>
-        <form action="/articles" method="get" class="search_form">
-          <input type="text" name="title" class="search" placeholder="Search places">
-          <input type="submit" value="" class="btn_sub">
-            <img th:src="@{/img/svg/search.svg}" alt="">
+        <form action="/articles" method="get" class="search">
+          <input type="text" name="title" class="search__input" placeholder="Search articles">
+          <input type="submit" value=" " class="search__btn">
+            <img th:src="@{/img/svg/search.svg}" alt="" class="search__icon">
           </input>
         </form>
       </div>
