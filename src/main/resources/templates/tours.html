@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,26 +19,58 @@
 </head>
 <body>
 <header th:insert="block/header :: header"></header>
-<div class="lololo">hello hello</div>
-<p>It is tours page</p>
-<form action="/tours/add" method="post" enctype="multipart/form-data">
-    <input type="text" name="title"><br>
-    <input type="text" name="description"><br>
-    <input type="text" name="region"><br>
-    <input type="file" name="file1" placeholder="Choose a pic1"><br>
-    <input type="file" name="file2" placeholder="Choose a pic2"><br>
-    <input type="file" name="file3" placeholder="Choose a pic3"><br>
-    <button type="submit">Add new tour</button>
-</form>
-<form action="/tours" method="get">
-    <input type="text" name="title">
-    <input type="submit" value="Search"/>
-</form>
-<div th:each="el : ${tour}">
-    <p th:text="${el.title}"/>
-    <p th:text="${el.region}"/>
-    <a th:href="'/tours/'+ ${el.id}">Read more...</a>
-</div>
+
+<main class="main">
+    <section class="main__image">
+        <img th:src="@{/img/tourBack.png}" alt=""/>
+        <div class="main-info-block wrapper">
+            <span class="tours__title">Find your escape</span>
+            <div class="main-info-text">
+                <p>
+                    Some text jsdncjsncsjdncjdncjsdnc sdjcsjdncjsdncjsdncjsdcnsjdcn
+                    sdcsdcsdcsdmcskdmcksdmcksd
+                </p>
+            </div>
+            <div class="main-info__button">
+                <a href="" class="">Book a tour</a>
+            </div>
+        </div>
+    </section>
+    <section class="tours-block">
+        <div class="search-section">
+            </form>
+            <form action="/tours" method="get" class="search">
+                <input type="text" name="title" placeholder="Search tours" class="search__input"/>
+                <input type="submit" value=" " class="search__btn">
+                <img th:src="@{/img/svg/search.svg}" alt="" class="search__icon">
+            </form>
+        </div>
+        <section class="tours-cards">
+            <div class="wrapper">
+                <div class="tours-cards__card" th:each="el : ${tour}">
+                    <img th:src="@{/img/tourCard.png}" alt="" class="tour__card-img">
+                    <a th:href="'/tours/'+ ${el.id}" class="tours-cards__description">
+                        <h3 th:text="${el.title}"/>
+                        <p class="tours__text" th:text="${el.region}"/>
+                        <h3 class="guide">Guide Satkynova Janara</h3>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </section>
+    </section>
+    <p>It is tours page</p>
+    <form action="/tours/add" method="post" enctype="multipart/form-data">
+        <input type="text" name="title"><br>
+        <input type="text" name="description"><br>
+        <input type="text" name="region"><br>
+        <input type="file" name="file1" placeholder="Choose a pic1"><br>
+        <input type="file" name="file2" placeholder="Choose a pic2"><br>
+        <input type="file" name="file3" placeholder="Choose a pic3"><br>
+        <button type="submit">Add new tour</button>
+    </form>
+</main>
+
 
 <footer th:insert="block/footer :: footer"></footer>
 <script th:src="@{/js/script.js}"></script>
