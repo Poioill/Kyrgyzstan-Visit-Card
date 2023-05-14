@@ -1,7 +1,9 @@
 package com.example.demokankretnalast.controllers;
 
 import com.example.demokankretnalast.entity.Articles;
+import com.example.demokankretnalast.entity.Regions;
 import com.example.demokankretnalast.services.ArticlesService;
+import com.example.demokankretnalast.services.RegionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +20,13 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class ArticlesController {
     private final ArticlesService articlesService;
+    private final RegionService regionService;
 
     @GetMapping("/articles")
     public String art(@RequestParam(name = "title", required = false) String title, Model model){
         model.addAttribute("art", articlesService.listArticles(title));
+        Iterable<Regions> region = regionService.findAllRegions();
+        model.addAttribute("region", region);
         return "articlesPage/articles";
     }
 

@@ -2,7 +2,6 @@ package com.example.demokankretnalast.services;
 
 import com.example.demokankretnalast.entity.Articles;
 import com.example.demokankretnalast.entity.Img;
-import com.example.demokankretnalast.entity.Tour;
 import com.example.demokankretnalast.repositories.ArticlesRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

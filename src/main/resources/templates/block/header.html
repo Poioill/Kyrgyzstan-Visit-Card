@@ -17,13 +17,9 @@
                     <li class="header__list-item">
                         <a href="" class="list-item">Regions &bigtriangledown;</a>
                         <ul>
-                            <li><a href="regions.html">Chui</a></li>
-                            <li><a href="regions.html">Naryn</a></li>
-                            <li><a href="/">Isyk-Kul</a></li>
-                            <li><a href="/">Osh</a></li>
-                            <li><a href="/">Talas</a></li>
-                            <li><a href="/">Batken</a></li>
-                            <li><a href="/">Jalal-Abad</a></li>
+                            <li th:each="el : ${region}">
+                                <a th:href="'/regions/' + ${el.id}" th:text="${el.regionName}"></a>
+                            </li>
                         </ul>
                     </li>
                     <li class="header__list-item">

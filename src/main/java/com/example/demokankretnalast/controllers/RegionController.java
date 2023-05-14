@@ -6,19 +6,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-@RequestMapping
 @Controller
 @RequiredArgsConstructor
-public class HomeController {
+public class RegionController {
     private final RegionService regionService;
-
-    @GetMapping("/")
-    public String homePage(Model model){
+    @GetMapping("/regions/{id}")
+    public String getRegion(@PathVariable(value = "id") Long id, Model model){
+        Regions regions = regionService.getRegionById(id);
+//        ArrayList<Regions> rego = new ArrayList<>();
+//        regions.ifPresent(rego::add);
+//        model.addAttribute("rego", rego);
         Iterable<Regions> region = regionService.findAllRegions();
-        model.addAttribute("title", "Hi");
         model.addAttribute("region", region);
-        return "home";
+        model.addAttribute("reg", regions);
+        return "regionsPage/region";
     }
 }

@@ -1,6 +1,8 @@
 package com.example.demokankretnalast.controllers;
 
+import com.example.demokankretnalast.entity.Regions;
 import com.example.demokankretnalast.entity.Tour;
+import com.example.demokankretnalast.services.RegionService;
 import com.example.demokankretnalast.services.TourService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,9 +19,12 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class TourController {
     private final TourService tourService;
+    private final RegionService regionService;
 
     @GetMapping("/tours")
     public String tours(@RequestParam(name = "title", required = false) String title, Model model){
+        Iterable<Regions> region = regionService.findAllRegions();
+        model.addAttribute("region", region);
         model.addAttribute("tour", tourService.listTours(title));
         return "tours";
     }
