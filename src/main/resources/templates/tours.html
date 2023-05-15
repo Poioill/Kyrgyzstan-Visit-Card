@@ -37,12 +37,20 @@
         </div>
     </section>
     <section class="tours-block">
-        <div class="search-section">
-            <form action="/tours" method="get" class="search">
-                <input type="text" name="title" placeholder="Search tours" class="search__input"/>
-                <input type="submit" value=" " class="search__btn">
-                <img th:src="@{/img/svg/search.svg}" alt="" class="search__icon">
-            </form>
+        <div class="info__content">
+            <div>
+                <form action="/tours" method="get" class="search">
+                    <input type="text" name="title" class="search__input" placeholder="Search tours">
+                    <input type="submit" value=" " class="search__btn">
+                    <img th:src="@{/img/svg/search.svg}" alt="" class="search__icon">
+                    </input>
+                </form>
+            </div>
+            <div class="add-art__block">
+                <a href="#popup" class="info__add-art">
+                    Add new tour
+                </a>
+            </div>
         </div>
         <section class="tours-cards">
             <div class="wrapper">
@@ -58,16 +66,29 @@
             </div>
         </section>
     </section>
-    <p>It is tours page</p>
-    <form action="/tours/add" method="post" enctype="multipart/form-data">
-        <input type="text" name="title"><br>
-        <input type="text" name="description"><br>
-        <input type="text" name="region"><br>
-        <input type="file" name="file1" placeholder="Choose a pic1"><br>
-        <input type="file" name="file2" placeholder="Choose a pic2"><br>
-        <input type="file" name="file3" placeholder="Choose a pic3"><br>
-        <button type="submit">Add new tour</button>
-    </form>
+    <div id="popup" class="popup">
+        <a href="#header" class="popup__area"></a>
+        <div class="popup__body">
+            <div class="popup__content">
+                <a href="#header" class="popup__close">
+                    <img th:src="@{/img/svg/close.svg}" alt="" class="close-icon">
+                </a>
+                <p class="popup__title">Add new tour</p>
+                <form action="/tours/add" method="post" enctype="multipart/form-data">
+                    <input type="text" name="title" class="popup__input" placeholder="Title"><br>
+                    <textarea type="text" name="description" class="popup__input popup__input-area" placeholder="Description"></textarea><br>
+                    <input type="text" name="region" class="popup__input" placeholder="Region"><br>
+                    <label for="file1" class="popup__file">Select Image</label>
+                    <input type="file" id="file1" style="visibility:hidden;" name="file1" value="Choose a pic1"><br>
+                    <label for="file2" class="popup__file">Select Image</label>
+                    <input type="file" id="file2" style="visibility:hidden;" name="file2" placeholder="Choose a pic2"><br>
+                    <label for="file3" class="popup__file">Select Image</label>
+                    <input type="file" id="file3" style="visibility:hidden;" name="file3" placeholder="Choose a pic3"><br>
+                    <button type="submit" class="popup__btn">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>
 
 

@@ -51,4 +51,19 @@ public class TourController {
         tourService.deleteTour(id);
         return "redirect:/tours";
     }
+
+    @GetMapping("/tours/update/{id}")
+    public String updateTour(@PathVariable Long id, Model model){
+        Tour tour = tourService.getTourById(id);
+        model.addAttribute("tour", tour);
+        return "tour-update";
+    }
+    @PostMapping("/tours/update/{id}")
+    public String updateTour(@RequestParam("file1") MultipartFile file1,
+                             @RequestParam("file2") MultipartFile file2,
+                             @RequestParam("file3") MultipartFile file3,
+                             Tour tour, Principal principal) throws IOException {
+        tourService.saveTour(principal, tour, file1, file2, file3);
+        return "redirect:/tours/{id}";
+    }
 }

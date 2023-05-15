@@ -12,5 +12,6 @@
     <form th:action="'/tours/delete/'+${tour.id}" method="post">
         <input type="submit" value="Del"/>
     </form>
+<a th:href="'/tours/update/' + ${tour.id}">Update</a>
 </body>
 </html>

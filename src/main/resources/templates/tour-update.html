@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="t : ${tour}">
+    <form method="post" enctype="multipart/form-data">
+        <input th:value="${t.title}" type="text" name="title"><br>
+        <textarea th:text="${t.description}" name="description"></textarea><br>
+        <input th:value="${t.region}" type="text" name="region"><br>
+        <input type="file" th: name="file1" placeholder="Choose a pic1"><br>
+        <input type="file" name="file2" placeholder="Choose a pic2"><br>
+        <input type="file" name="file3" placeholder="Choose a pic3"><br>
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+</body>
+</html>
