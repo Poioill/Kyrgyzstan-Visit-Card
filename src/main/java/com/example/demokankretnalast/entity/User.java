@@ -1,78 +1,53 @@
 package com.example.demokankretnalast.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
-import java.util.Collection;
-import java.util.Set;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.*;
 
+@SuppressWarnings("ALL")
 @Entity
 @Table(name = "usr")
-public class User implements UserDetails {
+@Data
+public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
-    private String password;
+    @Column(unique = true)
+    private String email;
+    private String phoneNumber;
     private boolean active;
-//    private String email;
-//    private String activationCode;
-
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "image_id")
+    private Img avatar;
+    private String name;
+    @Column(length = 1000)
+    private String password;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @CollectionTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+    mappedBy = "user")
+    private List<Tour> tours = new ArrayList<>();
+    private LocalDateTime dateOfCreated;
 
-//    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Message> messages;
-
-//    @ManyToMany
-//    @JoinTable(
-//            name = "user_subscriptions",
-//            joinColumns = { @JoinColumn(name = "channel_id") },
-//            inverseJoinColumns = { @JoinColumn(name = "subscriber_id") }
-//    )
-//    private Set<User> subscribers = new HashSet<>();
-//
-//    @ManyToMany
-//    @JoinTable(
-//            name = "user_subscriptions",
-//            joinColumns = { @JoinColumn(name = "subscriber_id") },
-//            inverseJoinColumns = { @JoinColumn(name = "channel_id") }
-//    )
-//    private Set<User> subscriptions = new HashSet<>();
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        User user = (User) o;
-//        return Objects.equals(id, user.id);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//
-//        return Objects.hash(id);
-//    }
-
-    public boolean isAdmin() {
-        return roles.contains(Role.ADMIN);
+    @PrePersist
+    private void init(){
+        dateOfCreated = LocalDateTime.now();
     }
-
-    public Long getId() {
-        return id;
+    // security
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
@@ -92,40 +67,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isActive();
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isActive() {
         return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 
 }

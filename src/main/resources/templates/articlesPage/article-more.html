@@ -10,7 +10,7 @@
             crossorigin="anonymous"
     />
     <link rel="stylesheet" th:href="@{/css/base.css}">
-    <link rel="stylesheet" th:href="@{/css/articles.css}">
+    <link rel="stylesheet" th:href="@{/css/art-info.css}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles about Kyrgyzstan</title>
     <style>
@@ -20,14 +20,44 @@
 <body>
 <header th:insert="block/header :: header"></header>
 <main>
-    <br><br><br><br><br><br><br><br><br><br><br>
-    <div th:each="img : ${images}">
-        <img th:src="'/images/' + ${img.id}" height="200px"/><br>
+    <div class="wrapper__main">
+        <div class="top-back">
+            <div class="top-back__inside d-flex">
+                <a href="/articles" class="top-back__link">
+                    <img th:src="@{/img/svg/back.svg}" alt="" />
+                </a>
+                <a href="/articles" class="top-back__link">BACK</a>
+            </div>
+        </div>
     </div>
-    <p th:text="${art.title}"></p>
-    <form th:action="'/articles/delete/'+${art.id}" method="post">
-        <input type="submit" value="Del"/>
-    </form>
+    <div class="wrapper__main">
+        <div class="title-images">
+            <h1 th:text="${art.title}"/>
+            <div class="main__images">
+                <div th:each="img : ${images}" class="col1">
+                    <img th:src="'/images/' + ${img.id}" /><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="description">
+        <div class="purple-line"></div>
+        <p th:text="${art.description}"></p>
+        <div class="purple-line"></div>
+    </div>
+    <span>Author: Helene Nemchinskay</span>
+    <div class="form__edit">
+        <form th:action="'/articles/delete/'+${art.id}" method="post" class="edit-style">
+            <input type="submit" value="Delete"/>
+        </form>
+<!--        <a th:href="'/articles/' + ${el.id} + '/edit'" class="update-form edit-style">Update</a>-->
+    </div>
+    <!-- <form method="post">
+        <input type="text" th:value="${el.title}" name="title" placeholder="Enter title">
+        <textarea th:text="${el.description}" name="text" placeholder="Write text"></textarea>
+        <button type="submit">Update</button>
+      </form> -->
+    <br><br><br><br><br><br>
 </main>
 <footer th:insert="block/footer :: footer"></footer>
 <script th:src="@{/js/script.js}"></script>

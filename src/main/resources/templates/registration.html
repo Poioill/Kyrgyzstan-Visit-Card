@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,13 +22,18 @@
             </div>
             <h2 class="login-title">Start your journey in Kyrgyzstan!</h2>
             <form th:action="@{/registration}" method="post" class="login__actual-form">
-                <input type="text" name="username" placeholder="Username" class="form-item">
+                <input type="text" name="name" placeholder="Username" class="form-item">
+                <input type="email" name="email" placeholder="Email" class="form-item">
+                <input type="text" name="phoneNumber" placeholder="Phone number" class="form-item">
                 <input type="password" name="password" placeholder="Password" class="form-item">
+
+                <!--<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                -->
                 <div th:if="${message}" class="login__message">
                     <span th:text="${message}" class="login-message"/>
                     <a href="/login" class="login-message-link">log in</a>
                 </div>
-                <input type="submit"  class="form-btn" value="Sign up">
+                <input type="submit"  class="form-btn" value="Register">
             </form>
         </div>
         <div class="login__pic">

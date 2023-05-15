@@ -2,13 +2,16 @@ package com.example.demokankretnalast.services;
 
 import com.example.demokankretnalast.entity.Img;
 import com.example.demokankretnalast.entity.Tour;
+import com.example.demokankretnalast.entity.User;
 import com.example.demokankretnalast.repositories.TourRepo;
+import com.example.demokankretnalast.repositories.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -16,13 +19,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TourService {
     private final TourRepo tourRepo;
+    private final UserRepo userRepo;
 
     public List<Tour> listTours(String title) {
         if (title != null) return tourRepo.findByTitleContainingIgnoreCase(title);
         return tourRepo.findAll();
     }
 
-    public void saveTour(Tour tour, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
+    public void saveTour(Principal principal, Tour tour, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
+        tour.setUser(getUserByPrincipal(principal));
         Img img1;
         Img img2;
         Img img3;
@@ -39,10 +44,15 @@ public class TourService {
             img3 = toImageEntity(file3);
             tour.addImageToProduct(img3);
         }
-        log.info("Saving new Tour. Title: {}; Description: {}", tour.getTitle(), tour.getDescription());
+        log.info("Saving new Tour. Title: {}; Author email: {}", tour.getTitle(), tour.getUser().getEmail());
         Tour tourFromDB = tourRepo.save(tour);
         tourFromDB.setPreviewImageId(tourFromDB.getImages().get(0).getId());
         tourRepo.save(tour);
+    }
+
+    public User getUserByPrincipal(Principal principal) {
+        if (principal == null) return new User();
+        return userRepo.findByEmail(principal.getName());
     }
 
     private Img toImageEntity(MultipartFile file) throws IOException{

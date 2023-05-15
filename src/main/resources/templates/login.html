@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,8 +8,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;300;400;600&family=Oswald&display=swap');
     </style>
-    <link rel="stylesheet" th:href="@{/css/base.css}">
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+
 </head>
 <body>
 <main class="main">
@@ -22,9 +23,11 @@
             </div>
             <h2 class="login-title">Continue your journey in Kyrgyzstan!</h2>
             <form th:action="@{/login}" method="post" class="login__actual-form">
-                <input type="text" name="username" placeholder="Username" class="form-item">
+                <input type="email" name="username" placeholder="Email" class="form-item">
                 <input type="password" name="password" placeholder="Password" class="form-item">
-                <input type="submit"  class="form-btn" value="Log in">
+                <!--
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}">-->
+                <input type="submit"  class="form-btn" value="Enter">
             </form>
         </div>
         <div class="login__pic">

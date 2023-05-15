@@ -1,3 +1,6 @@
+<html
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/">
 <header id="header" class="header" th:fragment="header">
     <div class="wrapper">
         <div class="header__wrapper">
@@ -28,19 +31,25 @@
                 </ul>
             </nav>
             <nav class="header__wrap">
-                <form th:action="@{logout}" method="post">
-                    <input type="submit" value="Sign out">
-                </form>
-                <ul class="header__list">
-                    <li class="header__list-item_log">
-                        <a href="/login" class="list-item">Log in</a>
-                    </li>
-                    <li class="header__list-item_log">|</li>
-                    <li class="header__list-item_log">
-                        <a href="/registration" class="list-item">Sign up</a>
-                    </li>
-                </ul>
+                <span sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post" class="header__form">
+                        <!--input type="hidden" name="_csrf"  th:value="${_csrf.token}"/>-->
+                        <input type="submit" value="Sign out" class="header__form-btn"/>
+                    </form>
+                </span>
+                <span sec:authorize="!isAuthenticated()">
+                    <ul  class="header__list">
+                        <li class="header__list-item_log">
+                            <a href="/login" class="list-item header__form">Log in</a>
+                        </li>
+                        <li class="header__list-item_log">
+                            <a href="/registration" class="list-item header__form">Sign up</a>
+                        </li>
+                    </ul>
+                </span>
+
             </nav>
         </div>
     </div>
 </header>
+</html>

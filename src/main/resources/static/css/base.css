@@ -16,6 +16,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 input{
     outline: none;
 }
+
 textarea{
     outline: none;
 }
@@ -96,6 +97,35 @@ body {
     align-items: center;
     padding-top: 5px;
 }
+
+
+
+
+.header__form-btn{
+    font-size: 18px;
+    font-weight: 200;
+    background: none;
+    border: none;
+    color: white;
+}
+.header__form-btn:hover{
+    color: #223E6C;
+}
+.header__form{
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 4px;
+    padding: 3px 8px;
+    transition-duration: 0.4s;
+}
+.header__form:hover{
+    background-color: rgb(244, 244, 244);
+    color: #223E6C;
+}
+
+
+
+
+
 .header__list{
     display: flex;
     flex-wrap: wrap;

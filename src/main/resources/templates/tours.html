@@ -51,7 +51,7 @@
                     <a th:href="'/tours/'+ ${el.id}" class="tours-cards__description">
                         <h3 th:text="${el.title}"/>
                         <p class="tours__text" th:text="${el.region}"/>
-                        <h3 class="guide">Guide Satkynova Janara</h3>
+                        <h3 th:text="'Guide ' + ${el.user.name}" class="guide"></h3>
                     </a>
                 </div>
             </div>

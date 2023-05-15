@@ -79,6 +79,7 @@
           <input type="file" id="file2" style="visibility:hidden;" name="file2" placeholder="Choose a pic2"><br>
           <label for="file3" class="popup__file">Select Image</label>
           <input type="file" id="file3" style="visibility:hidden;" name="file3" placeholder="Choose a pic3"><br>
+          <input type="hidden" name="_csrf" th:value="${_csrf.token}">
           <button type="submit" class="popup__btn">Add</button>
         </form>
       </div>

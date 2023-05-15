@@ -7,6 +7,8 @@
         <img th:src="'/images/' + ${img.id}" height="60px"/><br>
     </div>
     <p th:text="${tour.title}"></p>
+    <br>
+    <b>Guide: </b><p th:text="${tour.user.name}"></p>
     <form th:action="'/tours/delete/'+${tour.id}" method="post">
         <input type="submit" value="Del"/>
     </form>

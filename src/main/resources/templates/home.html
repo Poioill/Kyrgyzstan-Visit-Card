@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/"
+>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +19,8 @@
     </style>
 </head>
 <body>
-<header th:insert="block/header :: header"></header>
+
+<div th:include="block/header"></div>
 <main class="main">
     <section class="main__image">
         <img th:src="@{/img/main_image.png}" alt="" class="img__content">

@@ -15,9 +15,6 @@ public class RegionController {
     @GetMapping("/regions/{id}")
     public String getRegion(@PathVariable(value = "id") Long id, Model model){
         Regions regions = regionService.getRegionById(id);
-//        ArrayList<Regions> rego = new ArrayList<>();
-//        regions.ifPresent(rego::add);
-//        model.addAttribute("rego", rego);
         Iterable<Regions> region = regionService.findAllRegions();
         model.addAttribute("region", region);
         model.addAttribute("reg", regions);
