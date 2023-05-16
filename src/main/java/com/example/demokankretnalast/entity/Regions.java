@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -15,8 +18,8 @@ public class Regions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String regionName;
-    private String regionSubTitle;
+    private String capital;
+    private String regionFullName;
     @Column(length = 500)
     private String introDescription;
     @Column(length = 1000)
@@ -27,4 +30,17 @@ public class Regions {
     private String climate;
     @Column(length = 3000)
     private String tourism;
+
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn
+    private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            mappedBy = "regions")
+    private List<ImgRegion> images = new ArrayList<>();
+
+    public void addImageToRegion(ImgRegion imgRegion){
+        imgRegion.setRegions(this);
+        images.add(imgRegion);
+    }
 }

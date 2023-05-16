@@ -27,13 +27,14 @@ public class Articles {
             mappedBy = "articles")
     private List<Img> images = new ArrayList<>();
     private Long previewImageId;
+    public void addImageToArticle(Img img){
+        img.setArticles(this);
+        images.add(img);
+    }
+
     private LocalDateTime dateOfCreated;
     @PrePersist
     private void init(){
         dateOfCreated = LocalDateTime.now();
-    }
-    public void addImageToArticle(Img img){
-        img.setArticles(this);
-        images.add(img);
     }
 }

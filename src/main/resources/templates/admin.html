@@ -55,6 +55,28 @@
         <th th:text="${user.dateOfCreated}"></th>
     </tr>
 </table>
+<h3>Regions</h3>
+<div th:each="region : ${regions}">
+    <p th:text="${region.regionFullName}"> region</p>
+</div>
+<p>Add new one</p>
+<form action="/admin/create/region" method="post" enctype="multipart/form-data">
+    <input name="capital" type="text" placeholder="Capital"><br>
+    <input name="regionFullName" type="text" placeholder="Region"><br>
+    <textarea name="introDescription" placeholder="Intro text"></textarea><br>
+    <textarea name="aboutRegion" placeholder="About this region"></textarea><br>
+    <textarea name="history" placeholder="History"></textarea><br>
+    <textarea name="climate" placeholder="climate"></textarea><br>
+    <textarea name="tourism" placeholder="tourism"></textarea><br>
+    <label for="fileMain">Select main image</label>
+        <input type="file" id="fileMain" name="fileMain" value="Choose a pic1"><br>
+    <label for="fileMain">Select intro image</label>
+        <input type="file" id="fileIntro" name="fileIntro" value="Choose a pic1"><br>
+    <input type="file" id="file1" name="file1" value="Choose a pic1"><br>
+    <input type="file" id="file2" name="file2" value="Choose a pic1"><br>
+    <input type="file" id="file3" name="file3" value="Choose a pic1"><br>
+    <button type="submit">Add region</button><br>
+</form>
 <br><br><br><br><br><br><br><br><br><br><br>
 
 <footer th:insert="block/footer :: footer"></footer>

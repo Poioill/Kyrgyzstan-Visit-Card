@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Img {
+public class ImgRegion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,14 +18,10 @@ public class Img {
     private String originalFileName;
     private Long size;
     private String contentType;
-    private boolean isPreviewImage;
 
     @Column(columnDefinition = "LONGBLOB")
     private byte[] bytes;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    private Tour tour;
-
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    private Articles articles;
+    private Regions regions;
 }

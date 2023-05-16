@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -13,7 +14,7 @@ import java.util.*;
 @Entity
 @Table(name = "usr")
 @Data
-public class User implements UserDetails{
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,9 +22,11 @@ public class User implements UserDetails{
     private String email;
     private String phoneNumber;
     private boolean active;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "image_id")
+    @JoinColumn
     private Img avatar;
+
     private String name;
     @Column(length = 1000)
     private String password;
@@ -32,24 +35,34 @@ public class User implements UserDetails{
             joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
-    mappedBy = "user")
+            mappedBy = "user")
     private List<Tour> tours = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+            mappedBy = "user")
+    private List<Regions> regions = new ArrayList<>();
+
     @JsonFormat(pattern = "yyyy-mmmm-dd ")
     @Column(updatable = false)
     private LocalDateTime dateOfCreated;
 
     @PrePersist
-    private void init(){
+    private void init() {
         dateOfCreated = LocalDateTime.now();
     }
 
-    public boolean isAdmin(){return roles.contains(Role.ROLE_ADMIN);}
+    public boolean isAdmin() {
+        return roles.contains(Role.ROLE_ADMIN);
+    }
+
     // security
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
     }
+
     @Override
     public String getUsername() {
         return email;

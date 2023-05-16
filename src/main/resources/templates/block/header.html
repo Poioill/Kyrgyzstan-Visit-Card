@@ -21,7 +21,7 @@
                         <a href="" class="list-item">Regions &bigtriangledown;</a>
                         <ul>
                             <li th:each="el : ${region}">
-                                <a th:href="'/regions/' + ${el.id}" th:text="${el.regionName}"></a>
+                                <a th:href="'/regions/' + ${el.id}" th:text="${el.regionFullName}"></a>
                             </li>
                         </ul>
                     </li>

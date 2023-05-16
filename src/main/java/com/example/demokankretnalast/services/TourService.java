@@ -28,7 +28,10 @@ public class TourService {
         return tourRepo.findAll();
     }
 
-    public void saveTour(Principal principal, Tour tour, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
+    public void saveTour(Principal principal, Tour tour,
+                         MultipartFile file1,
+                         MultipartFile file2,
+                         MultipartFile file3) throws IOException {
         tour.setUser(getUserByPrincipal(principal));
         Img img1;
         Img img2;
@@ -52,12 +55,6 @@ public class TourService {
         tourRepo.save(tour);
     }
 
-    public void saveTourWithoutPic(Principal principal, Tour tour){
-        tour.setUser(getUserByPrincipal(principal));
-        log.info("Saving new Tour. Title: {}; Author email: {}; ", tour.getTitle(), tour.getUser().getEmail());
-        Tour tourFromDB = tourRepo.save(tour);
-        tourRepo.save(tour);
-    }
     public User getUserByPrincipal(Principal principal) {
         if (principal == null) return new User();
         return userRepo.findByEmail(principal.getName());

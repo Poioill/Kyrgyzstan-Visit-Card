@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,6 +19,7 @@ public class RegionController {
         Iterable<Regions> region = regionService.findAllRegions();
         model.addAttribute("region", region);
         model.addAttribute("reg", regions);
+        model.addAttribute("images", regions.getImages());
         return "regionsPage/region";
     }
 }

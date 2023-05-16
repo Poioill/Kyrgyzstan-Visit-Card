@@ -31,13 +31,15 @@ public class Tour {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
+
+    public void addImageToProduct(Img img){
+        img.setTour(this);
+        images.add(img);
+    }
+
     private LocalDateTime dateOfCreated;
     @PrePersist
     private void init(){
         dateOfCreated = LocalDateTime.now();
-    }
-    public void addImageToProduct(Img img){
-        img.setTour(this);
-        images.add(img);
     }
 }
