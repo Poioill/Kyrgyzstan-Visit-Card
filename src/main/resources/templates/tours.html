@@ -48,7 +48,7 @@
                     </input>
                 </form>
             </div>
-            <div class="add-art__block">
+            <div class="add-art__block" sec:authorize="hasAuthority('ROLE_ADMIN')">
                 <a href="#popup" class="info__add-art">
                     Add new tour
                 </a>
@@ -71,7 +71,7 @@
     <div id="popup" class="popup">
         <a href="#header" class="popup__area"></a>
         <div class="popup__body">
-            <div class="popup__content" sec:authorize="isAuthenticated()">
+            <div class="popup__content">
                 <a href="#header" class="popup__close">
                     <img th:src="@{/img/svg/close.svg}" alt="" class="close-icon">
                 </a>
@@ -93,12 +93,12 @@
                     <button type="submit" class="popup__btn">Add</button>
                 </form>
             </div>
-            <div class="popup__content" sec:authorize="!isAuthenticated()">
-                <a href="#header" class="popup__close">
-                    <img th:src="@{/img/svg/close.svg}" alt="" class="close-icon">
-                </a>
-                <p class="popup__title pop-mess">Only authorized users can add a tour. <a class="popup-link" href="/login">Login</a></p>
-            </div>
+<!--            <div class="popup__content" sec:authorize="!isAuthenticated()">-->
+<!--                <a href="#header" class="popup__close">-->
+<!--                    <img th:src="@{/img/svg/close.svg}" alt="" class="close-icon">-->
+<!--                </a>-->
+<!--                <p class="popup__title pop-mess">Only authorized users can add a tour. <a class="popup-link" href="/login">Login</a></p>-->
+<!--            </div>-->
         </div>
     </div>
 </main>

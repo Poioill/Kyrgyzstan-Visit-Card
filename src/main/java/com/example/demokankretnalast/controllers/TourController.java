@@ -34,6 +34,7 @@ public class TourController {
     @GetMapping("/tours/{id}")
     public String tourInfo(@PathVariable Long id, Model model){
         Tour tour = tourService.getTourById(id);
+
         model.addAttribute("tour", tour);
         model.addAttribute("images", tour.getImages());
         return "tour-info";

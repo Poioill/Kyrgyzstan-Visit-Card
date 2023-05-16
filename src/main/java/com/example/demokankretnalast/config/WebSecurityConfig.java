@@ -2,6 +2,8 @@ package com.example.demokankretnalast.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -62,6 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
     @Bean
@@ -74,7 +77,7 @@ public class WebSecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests((requests) -> requests
                         //.requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/**", "/user/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

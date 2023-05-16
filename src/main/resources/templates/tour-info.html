@@ -58,7 +58,7 @@
             </div>
             <div class="col2__box">
                 <span class="col2__title">Guide:</span>
-                <span class="col2__sub" th:text="${tour.user.name}"></span>
+                <a th:href="'/user/' + ${tour.user.id}">[(${tour.user.name})]</a>
             </div>
             <div class="col2__box">
                 <span class="col2__title">Price (1 per):</span>

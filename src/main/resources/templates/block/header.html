@@ -28,6 +28,9 @@
                     <li class="header__list-item">
                         <a href="/articles" class="list-item">Articles</a>
                     </li>
+                    <li class="header__list-item"  sec:authorize="hasAuthority('ROLE_ADMIN')">
+                        <a href="/admin" class="list-item">Admin Panel</a>
+                    </li>
                 </ul>
             </nav>
             <nav class="header__wrap">
