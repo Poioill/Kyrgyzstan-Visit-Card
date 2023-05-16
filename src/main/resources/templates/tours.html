@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,7 +57,7 @@
         <section class="tours-cards">
             <div class="wrapper">
                 <div class="tours-cards__card" th:each="el : ${tour}">
-                    <img th:src="@{/img/tourCard.png}" alt="" class="tour__card-img">
+                    <img th:src="'/images/' + ${el.previewImageId}" alt="" class="tour__card-img" height="200px">
                     <a th:href="'/tours/'+ ${el.id}" class="tours-cards__description">
                         <h3 th:text="${el.title}"/>
                         <p class="tours__text" th:text="${el.region}"/>
@@ -69,7 +71,7 @@
     <div id="popup" class="popup">
         <a href="#header" class="popup__area"></a>
         <div class="popup__body">
-            <div class="popup__content">
+            <div class="popup__content" sec:authorize="isAuthenticated()">
                 <a href="#header" class="popup__close">
                     <img th:src="@{/img/svg/close.svg}" alt="" class="close-icon">
                 </a>
@@ -78,7 +80,11 @@
                     <input type="text" name="title" class="popup__input" placeholder="Title"><br>
                     <textarea type="text" name="description" class="popup__input popup__input-area" placeholder="Description"></textarea><br>
                     <input type="text" name="region" class="popup__input" placeholder="Region"><br>
-                    <label for="file1" class="popup__file">Select Image</label>
+                    <input type="text" name="advantages" class="popup__input" placeholder="What will customer get"><br>
+                    <input type="number" name="cost" class="popup__input" placeholder="Cost"><br>
+                    <input type="number" name="age" class="popup__input" placeholder="Age limit"><br>
+                    <input type="text" name="notes" class="popup__input" placeholder="Important notes"><br>
+                    <label for="file1" class="popup__file">Select preview</label>
                     <input type="file" id="file1" style="visibility:hidden;" name="file1" value="Choose a pic1"><br>
                     <label for="file2" class="popup__file">Select Image</label>
                     <input type="file" id="file2" style="visibility:hidden;" name="file2" placeholder="Choose a pic2"><br>
@@ -86,6 +92,12 @@
                     <input type="file" id="file3" style="visibility:hidden;" name="file3" placeholder="Choose a pic3"><br>
                     <button type="submit" class="popup__btn">Add</button>
                 </form>
+            </div>
+            <div class="popup__content" sec:authorize="!isAuthenticated()">
+                <a href="#header" class="popup__close">
+                    <img th:src="@{/img/svg/close.svg}" alt="" class="close-icon">
+                </a>
+                <p class="popup__title pop-mess">Only authorized users can add a tour. <a class="popup-link" href="/login">Login</a></p>
             </div>
         </div>
     </div>

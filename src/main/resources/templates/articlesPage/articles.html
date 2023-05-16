@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,24 +63,30 @@
   <div id="popup" class="popup">
     <a href="#header" class="popup__area"></a>
     <div class="popup__body">
-      <div class="popup__content">
+      <div class="popup__content" sec:authorize="isAuthenticated()">
+          <a href="#header" class="popup__close">
+            <img th:src="@{/img/svg/close.svg}" alt="" class="close-icon">
+          </a>
+          <p class="popup__title">Add new article</p>
+          <form action="/articles/add" method="post" enctype="multipart/form-data">
+            <input type="text" name="title" class="popup__input" placeholder="Title"><br>
+            <textarea type="text" name="description" class="popup__input popup__input-area" placeholder="Description"></textarea>
+            <br>
+            <input type="text" name="region" class="popup__input" placeholder="Region"><br>
+            <label for="file1" class="popup__file">Select Image</label>
+            <input type="file" id="file1" style="visibility:hidden;" name="file1" value="Choose a pic1"><br>
+            <label for="file2" class="popup__file">Select Image</label>
+            <input type="file" id="file2" style="visibility:hidden;" name="file2" placeholder="Choose a pic2"><br>
+            <label for="file3" class="popup__file">Select Image</label>
+            <input type="file" id="file3" style="visibility:hidden;" name="file3" placeholder="Choose a pic3"><br>
+            <button type="submit" class="popup__btn">Add</button>
+          </form>
+      </div>
+      <div class="popup__content" sec:authorize="!isAuthenticated()">
         <a href="#header" class="popup__close">
           <img th:src="@{/img/svg/close.svg}" alt="" class="close-icon">
         </a>
-        <p class="popup__title">Add new article</p>
-        <form action="/articles/add" method="post" enctype="multipart/form-data">
-          <input type="text" name="title" class="popup__input" placeholder="Title"><br>
-          <textarea type="text" name="description" class="popup__input popup__input-area" placeholder="Description"></textarea>
-          <br>
-          <input type="text" name="region" class="popup__input" placeholder="Region"><br>
-          <label for="file1" class="popup__file">Select Image</label>
-          <input type="file" id="file1" style="visibility:hidden;" name="file1" value="Choose a pic1"><br>
-          <label for="file2" class="popup__file">Select Image</label>
-          <input type="file" id="file2" style="visibility:hidden;" name="file2" placeholder="Choose a pic2"><br>
-          <label for="file3" class="popup__file">Select Image</label>
-          <input type="file" id="file3" style="visibility:hidden;" name="file3" placeholder="Choose a pic3"><br>
-          <button type="submit" class="popup__btn">Add</button>
-        </form>
+        <p class="popup__title pop-mess">Only authorized users can add an article. <a class="popup-link" href="/login">Login</a></p>
       </div>
     </div>
   </div>

@@ -55,6 +55,7 @@ public class TourController {
     @GetMapping("/tours/update/{id}")
     public String updateTour(@PathVariable Long id, Model model){
         Tour tour = tourService.getTourById(id);
+        model.addAttribute("images", tour.getImages());
         model.addAttribute("tour", tour);
         return "tour-update";
     }

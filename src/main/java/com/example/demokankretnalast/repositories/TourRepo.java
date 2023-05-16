@@ -1,5 +1,6 @@
 package com.example.demokankretnalast.repositories;
 
+import com.example.demokankretnalast.entity.Img;
 import com.example.demokankretnalast.entity.Tour;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

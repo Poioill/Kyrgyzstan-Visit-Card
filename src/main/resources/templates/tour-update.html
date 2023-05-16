@@ -5,14 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-<div th:each="t : ${tour}">
-    <form method="post" enctype="multipart/form-data">
-        <input th:value="${t.title}" type="text" name="title"><br>
-        <textarea th:text="${t.description}" name="description"></textarea><br>
-        <input th:value="${t.region}" type="text" name="region"><br>
-        <input type="file" th: name="file1" placeholder="Choose a pic1"><br>
-        <input type="file" name="file2" placeholder="Choose a pic2"><br>
-        <input type="file" name="file3" placeholder="Choose a pic3"><br>
+<div>
+    <form method="post" th:object="${tour}" enctype="multipart/form-data">
+        <input th:field="${tour.title}" type="text" name="title"><br>
+        <textarea th:text="${tour.description}" name="description"></textarea><br>
+        <input th:field="${tour.region}" type="text" name="region"><br>
+        <textarea th:text="${tour.advantages}" name="advantages" class="popup__input" placeholder="What will customer get"></textarea><br>
+        <input th:field="${tour.cost}" type="number" name="cost" class="popup__input" placeholder="Cost"><br>
+        <input th:field="${tour.age}" type="number" name="age" class="popup__input" placeholder="Age limit"><br>
+        <input th:field="${tour.notes}" type="text" name="notes" class="popup__input" placeholder="Important notes"><br>
+        <input type="file" id="file1"  name="file1" value="Choose a pic1"><br>
+        <input type="file" id="file2"  name="file2" value="Choose a pic1"><br>
+        <input type="file" id="file3"  name="file3" value="Choose a pic1"><br>
         <button type="submit">Update</button>
     </form>
 </div>

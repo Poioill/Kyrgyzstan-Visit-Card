@@ -33,7 +33,6 @@
             <nav class="header__wrap">
                 <span sec:authorize="isAuthenticated()">
                     <form th:action="@{/logout}" method="post" class="header__form">
-                        <!--input type="hidden" name="_csrf"  th:value="${_csrf.token}"/>-->
                         <input type="submit" value="Sign out" class="header__form-btn"/>
                     </form>
                 </span>

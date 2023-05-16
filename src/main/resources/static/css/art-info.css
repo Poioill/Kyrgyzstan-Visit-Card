@@ -5,7 +5,16 @@
 img {
     vertical-align: top;
 }
-
+button, input[type="submit"], input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    color: #ffffff;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
 /* ------------------------------ */
 .top-back{
     width: 1220px;
@@ -48,6 +57,8 @@ h1 {
 .main__images {
     display: flex;
     gap: 30px;
+    overflow: hidden;
+    max-width: 1000px;
 }
 .col1 img{
     height: 350px;
@@ -59,7 +70,7 @@ h1 {
     align-items: center;
 }
 .purple-line {
-    width: 1200px;
+    width: 100%;
     background: rgba(104, 119, 252, 0.2);
     height: 30px;
     margin: 30px 0;

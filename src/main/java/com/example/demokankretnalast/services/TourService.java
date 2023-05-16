@@ -3,6 +3,7 @@ package com.example.demokankretnalast.services;
 import com.example.demokankretnalast.entity.Img;
 import com.example.demokankretnalast.entity.Tour;
 import com.example.demokankretnalast.entity.User;
+import com.example.demokankretnalast.repositories.ImageRepo;
 import com.example.demokankretnalast.repositories.TourRepo;
 import com.example.demokankretnalast.repositories.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.List;
 public class TourService {
     private final TourRepo tourRepo;
     private final UserRepo userRepo;
+    private final ImageRepo imageRepo;
 
     public List<Tour> listTours(String title) {
         if (title != null) return tourRepo.findByTitleContainingIgnoreCase(title);
@@ -50,6 +52,12 @@ public class TourService {
         tourRepo.save(tour);
     }
 
+    public void saveTourWithoutPic(Principal principal, Tour tour){
+        tour.setUser(getUserByPrincipal(principal));
+        log.info("Saving new Tour. Title: {}; Author email: {}; ", tour.getTitle(), tour.getUser().getEmail());
+        Tour tourFromDB = tourRepo.save(tour);
+        tourRepo.save(tour);
+    }
     public User getUserByPrincipal(Principal principal) {
         if (principal == null) return new User();
         return userRepo.findByEmail(principal.getName());

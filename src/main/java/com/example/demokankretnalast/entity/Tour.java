@@ -19,7 +19,11 @@ public class Tour {
     private String title;
     @Column(columnDefinition = "text")
     private String description;
+    private String advantages;
     private String region;
+    private Integer cost;
+    private Integer age;
+    private String notes;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy = "tour")
     private List<Img> images = new ArrayList<>();
