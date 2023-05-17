@@ -16,10 +16,10 @@ import java.util.List;
 @AllArgsConstructor
 public class Articles {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text", length = 10000)
     private String description;
     private String region;
 
@@ -31,6 +31,10 @@ public class Articles {
         img.setArticles(this);
         images.add(img);
     }
+
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn
+    private User user;
 
     private LocalDateTime dateOfCreated;
     @PrePersist

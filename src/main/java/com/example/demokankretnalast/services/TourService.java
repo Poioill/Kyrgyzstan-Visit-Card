@@ -21,7 +21,6 @@ import java.util.List;
 public class TourService {
     private final TourRepo tourRepo;
     private final UserRepo userRepo;
-    private final ImageRepo imageRepo;
 
     public List<Tour> listTours(String title) {
         if (title != null) return tourRepo.findByTitleContainingIgnoreCase(title);

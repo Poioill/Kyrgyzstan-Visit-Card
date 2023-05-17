@@ -58,7 +58,7 @@ public class RegionService {
             img3 = toImageEntity(file3);
             region.addImageToRegion(img3);
         }
-        log.info("Saving new {}", region);
+        log.info("Saving new Region. RegionFullName: {}; Author email: {}", region.getRegionFullName(), region.getUser().getEmail());
         regionRepo.save(region);
     }
 

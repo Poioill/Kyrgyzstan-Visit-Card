@@ -17,6 +17,7 @@ public class UserController {
     @GetMapping("/user/{user}")
     public String userInfo(@PathVariable("user")User user, Model model){
         model.addAttribute("user", user);
+        model.addAttribute("articles", user.getArticles());
         model.addAttribute("region",regionService.findAllRegions());
         model.addAttribute("tours", user.getTours());
         return "user-info";

@@ -45,18 +45,13 @@
         <p th:text="${art.description}"></p>
         <div class="purple-line"></div>
     </div>
-    <span>Author: Helene Nemchinskay</span>
+    <span th:text="'Author: ' + ${art.user.name}"></span>
     <div class="form__edit">
         <form th:action="'/articles/delete/'+${art.id}" method="post" class="edit-style">
             <input type="submit" value="Delete"/>
         </form>
-<!--        <a th:href="'/articles/' + ${el.id} + '/edit'" class="update-form edit-style">Update</a>-->
+        <a th:href="'/articles/update/' + ${art.id}" class="update-form edit-style">Update</a>
     </div>
-    <!-- <form method="post">
-        <input type="text" th:value="${el.title}" name="title" placeholder="Enter title">
-        <textarea th:text="${el.description}" name="text" placeholder="Write text"></textarea>
-        <button type="submit">Update</button>
-      </form> -->
     <br><br><br><br><br><br>
 </main>
 <footer th:insert="block/footer :: footer"></footer>

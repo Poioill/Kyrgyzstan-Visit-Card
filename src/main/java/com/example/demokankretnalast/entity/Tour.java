@@ -8,8 +8,8 @@ import java.util.List;
 
 
 @SuppressWarnings("ALL")
-@Data
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Tour {

@@ -23,10 +23,6 @@ public class User implements UserDetails {
     private String phoneNumber;
     private boolean active;
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn
-//    private Img avatar;
-
     private String name;
     @Column(length = 1000)
     private String password;
@@ -43,6 +39,11 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
             mappedBy = "user")
     private List<Regions> regions = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+            mappedBy = "user")
+    private List<Articles> articles = new ArrayList<>();
+
 
     @JsonFormat(pattern = "yyyy-mmmm-dd ")
     @Column(updatable = false)

@@ -19,7 +19,7 @@ public class ImgRegion {
     private Long size;
     private String contentType;
 
-    @Column(columnDefinition = "LONGBLOB")
+    @Column(columnDefinition = "BYTEA")
     private byte[] bytes;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
