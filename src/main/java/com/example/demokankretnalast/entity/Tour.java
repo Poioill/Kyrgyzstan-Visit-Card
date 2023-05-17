@@ -17,12 +17,14 @@ public class Tour {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text", length = 10000)
     private String description;
+    @Column(columnDefinition = "text", length = 10000)
     private String advantages;
     private String region;
     private Integer cost;
     private Integer age;
+    @Column(columnDefinition = "text",length = 10000)
     private String notes;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy = "tour")

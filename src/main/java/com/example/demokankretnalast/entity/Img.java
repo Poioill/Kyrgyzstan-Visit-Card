@@ -20,7 +20,8 @@ public class Img {
     private String contentType;
     private boolean isPreviewImage;
 
-    @Column(columnDefinition = "LONGBLOB")
+
+    @Column(columnDefinition = "BYTEA")
     private byte[] bytes;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)

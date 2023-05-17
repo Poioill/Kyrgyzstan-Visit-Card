@@ -15,11 +15,11 @@ public class RegionController {
     private final RegionService regionService;
     @GetMapping("/regions/{id}")
     public String getRegion(@PathVariable(value = "id") Long id, Model model){
-        Regions regions = regionService.getRegionById(id);
-        Iterable<Regions> region = regionService.findAllRegions();
-        model.addAttribute("region", region);
-        model.addAttribute("reg", regions);
-        model.addAttribute("images", regions.getImages());
+        Regions region = regionService.getRegionById(id);
+        Iterable<Regions> regions = regionService.findAllRegions();
+        model.addAttribute("region", regions);
+        model.addAttribute("reg", region);
+        model.addAttribute("images", region.getImagesRegion());
         return "regionsPage/region";
     }
 }

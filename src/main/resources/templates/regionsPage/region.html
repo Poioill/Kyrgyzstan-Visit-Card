@@ -21,7 +21,7 @@
 <header th:insert="block/header :: header"></header>
 <main class="main">
     <section class="main__image">
-        <img th:src="@{/img/naryn.jpg}" alt="" class="img__content">
+        <img th:src="'/imagesRegion/' + ${reg.imagesRegion[0].id}" alt="" class="img__content">
         <div class="main__intro">
             <p class="intro__title" th:text="${reg.regionFullName}"></p>
             <div class="intro__info-box">
@@ -43,7 +43,7 @@
     <div class="wrapper">
         <section class="about__region-box">
             <div class="about__region">
-                <img src="/images/img/region-intro.png" alt="" class="region-img">
+                <img th:src="'/imagesRegion/' + ${reg.imagesRegion[1].id}" alt="" class="region-img">
                 <div class="about__box">
                     <h4 class="about-title" th:text="'About ' + ${reg.capital}"></h4>
                     <p class="about-text" th:text="${reg.introDescription}">
@@ -102,7 +102,7 @@
                         <p class="entry-text">[(${reg.aboutRegion})]</p>
                     </div>
                     <div class="entry__element-lg">
-                        <img src="/images/img/miniMap.png" alt="" class="entry-map">
+                        <img th:src="'/imagesRegion/' + ${reg.imagesRegion[2].id}" alt="" class="entry-map">
                     </div>
                 </div>
                 <div class="entry__history">
@@ -110,7 +110,7 @@
                     <p class="entry-text-block" th:text="${reg.history}"></p>
                 </div>
                 <div class="entry__blocks">
-                    <img src="/images/img/narynWeather.png" alt="" class="climate-pic">
+                    <img th:src="'/imagesRegion/' + ${reg.imagesRegion[3].id}" alt="" class="climate-pic">
                     <div class="climate__info-box">
                         <h4 class="entry-title">Climate</h4>
                         <p class="entry-text-block" th:text="${reg.climate}"></p>
@@ -121,7 +121,7 @@
                         <h4 class="entry-title">Tourism</h4>
                         <p class="entry-text-block" th:text="${reg.tourism}"></p>
                     </div>
-                    <img src="/images/img/narynTourism.png" alt="" class="tourism-pic">
+                    <img th:src="'/imagesRegion/' + ${reg.imagesRegion[4].id}" alt="" class="tourism-pic">
                 </div>
                 <div class="interesting_fact">
                     <p class="fact">
@@ -202,9 +202,6 @@
                     <img src="/images/img/kg_17.jpg" alt="" class="sight-pic">
                 </div>
                 <div class="sight__text">
-                    <div th:each="img : ${images}">
-                        <img th:src="'/images/' + ${img.id}">
-                    </div>
                     <p class="sight-t">
                         Sonköl is a large alpine lake, wedged in a basin between the inner spurs of the Tien Shan. It is
                         located between the ridges of Sonkyol-Too and Moldo-Too, at an altitude of 3016 m above sea

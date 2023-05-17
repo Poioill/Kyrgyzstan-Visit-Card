@@ -28,6 +28,7 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String admin(Model model) {
+        model.addAttribute("region",regionService.findAllRegions());
         model.addAttribute("regions", regionService.findAllRegions());
         model.addAttribute("users", userService.list());
         return "admin";
@@ -47,8 +48,9 @@ public class AdminController {
     }
 
     @PostMapping("/admin/user/ban/{id}")
-    public String userBan(@PathVariable("id") Long id) {
+    public String userBan(@PathVariable("id") Long id, Model model) {
         userService.banUser(id);
+        model.addAttribute("region",regionService.findAllRegions());
         return "redirect:/admin";
     }
 

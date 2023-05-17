@@ -108,6 +108,14 @@ h3 {
 .col2__box{
     padding: 3px 0;
 }
+.col2-link{
+    color: #0a274d;
+    font-size: 16px;
+}
+.col2-link:hover{
+    opacity: 0.75;
+    transition-duration: 0.7s;
+}
 /* ============== */
 .form__edit{
     width: 55%;

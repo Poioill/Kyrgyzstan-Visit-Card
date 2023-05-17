@@ -20,15 +20,15 @@ public class Regions {
     private Long id;
     private String capital;
     private String regionFullName;
-    @Column(length = 500)
+    @Column(length = 10000)
     private String introDescription;
-    @Column(length = 1000)
+    @Column(length = 10000)
     private String aboutRegion;
-    @Column(length = 3000)
+    @Column(length = 10000)
     private String history;
-    @Column(length = 3000)
+    @Column(length = 10000)
     private String climate;
-    @Column(length = 3000)
+    @Column(length = 10000)
     private String tourism;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
@@ -37,10 +37,10 @@ public class Regions {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy = "regions")
-    private List<ImgRegion> images = new ArrayList<>();
+    private List<ImgRegion> imagesRegion = new ArrayList<>();
 
     public void addImageToRegion(ImgRegion imgRegion){
         imgRegion.setRegions(this);
-        images.add(imgRegion);
+        imagesRegion.add(imgRegion);
     }
 }

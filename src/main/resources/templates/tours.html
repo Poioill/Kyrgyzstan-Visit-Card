@@ -57,7 +57,7 @@
         <section class="tours-cards">
             <div class="wrapper">
                 <div class="tours-cards__card" th:each="el : ${tour}">
-                    <img th:src="'/images/' + ${el.previewImageId}" alt="" class="tour__card-img" height="200px">
+                    <img th:src="'/images/' + ${el.images[0].id}" alt="" class="tour__card-img" height="200px">
                     <a th:href="'/tours/'+ ${el.id}" class="tours-cards__description">
                         <h3 th:text="${el.title}"/>
                         <p class="tours__text" th:text="${el.region}"/>
@@ -80,10 +80,10 @@
                     <input type="text" name="title" class="popup__input" placeholder="Title"><br>
                     <textarea type="text" name="description" class="popup__input popup__input-area" placeholder="Description"></textarea><br>
                     <input type="text" name="region" class="popup__input" placeholder="Region"><br>
-                    <input type="text" name="advantages" class="popup__input" placeholder="What will customer get"><br>
+                    <textarea type="text" name="advantages" class="popup__input" placeholder="What will customer get"></textarea><br>
                     <input type="number" name="cost" class="popup__input" placeholder="Cost"><br>
                     <input type="number" name="age" class="popup__input" placeholder="Age limit"><br>
-                    <input type="text" name="notes" class="popup__input" placeholder="Important notes"><br>
+                    <textarea type="text" name="notes" class="popup__input" placeholder="Important notes"></textarea><br>
                     <label for="file1" class="popup__file">Select preview</label>
                     <input type="file" id="file1" style="visibility:hidden;" name="file1" value="Choose a pic1"><br>
                     <label for="file2" class="popup__file">Select Image</label>

@@ -33,6 +33,7 @@ public class ArticlesController {
     @GetMapping("/articles/{id}")
     public String tourInfo(@PathVariable Long id, Model model){
         Articles articles = articlesService.getArticleById(id);
+        model.addAttribute("region",regionService.findAllRegions());
         model.addAttribute("art", articlesService.getArticleById(id));
         model.addAttribute("images", articles.getImages());
         return "articlesPage/article-more";

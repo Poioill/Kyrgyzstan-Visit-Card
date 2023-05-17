@@ -43,7 +43,6 @@
     line-height: 35px;
 }
 
-
 /* =================== */
 
 .region-img{
@@ -242,6 +241,7 @@ h3 {
 }
 .climate-pic{
     border-right: 12px solid #31408C;
+    width: 400px;
 }
 .climate__info-box .entry-text-block{
     text-align: left;
@@ -249,6 +249,7 @@ h3 {
 /* ========= */
 .tourism-pic{
     border-left: 12px solid #CEA452;
+    width: 400px;
 }
 .tourism__info-box .entry-text-block{
     text-align: right;

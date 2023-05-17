@@ -23,9 +23,9 @@ public class User implements UserDetails {
     private String phoneNumber;
     private boolean active;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn
-    private Img avatar;
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn
+//    private Img avatar;
 
     private String name;
     @Column(length = 1000)
