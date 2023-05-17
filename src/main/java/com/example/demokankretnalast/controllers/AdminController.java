@@ -3,10 +3,15 @@ package com.example.demokankretnalast.controllers;
 import com.example.demokankretnalast.entity.Regions;
 import com.example.demokankretnalast.entity.Role;
 import com.example.demokankretnalast.entity.User;
+import com.example.demokankretnalast.repositories.TourRepo;
 import com.example.demokankretnalast.services.RegionService;
+import com.example.demokankretnalast.services.TourService;
 import com.example.demokankretnalast.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,12 +30,14 @@ import java.util.Map;
 public class AdminController {
     private final UserService userService;
     private final RegionService regionService;
+    private final TourRepo tourRepo;
 
     @GetMapping("/admin")
-    public String admin(Model model) {
+    public String admin(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("region",regionService.findAllRegions());
-        model.addAttribute("regions", regionService.findAllRegions());
         model.addAttribute("users", userService.list());
+        model.addAttribute("usr", user);
+        model.addAttribute("tour", tourRepo.findAll());
         return "admin";
     }
 

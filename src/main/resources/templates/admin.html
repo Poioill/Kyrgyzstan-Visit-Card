@@ -10,78 +10,124 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
           crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/css/base.css}">
-    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;300;400;600&family=Oswald:wght@300;400;500;600;700&display=swap');
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Audiowide&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header th:insert="block/header :: header"></header>
 
-<br><br><br><br><br><br><br><br><br><br><br>
-<h1>Admin panel</h1>
-<table border="5">
-    <tr>
-        <th>Email</th>
-        <th>Phone number</th>
-        <th>Active</th>
-        <th>Role</th>
-        <th>Ban</th>
-        <th>Edit</th>
-        <th>Read more</th>
-    </tr>
-    <tr th:each="user : ${users}">
-        <th th:text="${user.email}"></th>
-        <th th:text="${user.phoneNumber}"></th>
-        <th th:text="${user.active}"></th>
-        <th th:each="role : ${user.roles}">
-            <p th:text="${role}"></p>
-        </th>
-        <th>
-            <form th:action="'/admin/user/ban/' + ${user.id}" method="post">
-                <input type="submit" value="Ban">
+<main class="main-admin main">
+    <div class="main__wrapper">
+        <h2 class="admin__title">Admin panel</h2>
+        <div class="admin__box">
+            <div class="admin__personal-info box-item">
+                <h3 class="admin-title">Personal Information</h3>
+                <img src="/images/img/culture.png" alt="" class="personal-avatar">
+                <div class="personal__block">
+                    <span class="block-title">Name: </span>
+                    <a href="/" class="block-info-link" th:text="${usr.name}"></a>
+                </div>
+                <div class="personal__block">
+                    <span class="block-title">Email: </span>
+                    <span class="block-info" th:text="${usr.email}"></span>
+                </div>
+            </div>
+            <div class="admin__blocks box-item">
+                <h3 class="admin-title">Tours</h3>
+                <div class="blocks__tour-items">
+                    <div th:each="item : ${tour}">
+                        <p class="tour-item"><a th:href="'/tours/' + ${item.id}" th:text="${item.title}"></a></p>
+                    </div>
+                    <p class="tour-item"><a href="/tours" class="admin-add">+ Add new Tour</a></p>
+                </div>
+            </div>
+            <div class="admin__blocks box-item">
+                <h3 class="admin-title">Regions</h3>
+                <div class="blocks__tour-items">
+                    <div th:each="item : ${region}">
+                        <p class="tour-item"><a th:href="'/regions/' + ${item.id}" th:text="${item.regionFullName}"></a></p>
+                    </div>
+                    <p class="tour-item"><a href="#rego" class="admin-add">+ Add new Region</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="admin__user__info">
+            <div class="admin-title">All users</div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}">1</td>
+                    <td><a th:href="'/user/' + ${user.id}">[(${user.name})]</a></td>
+                    <td th:text="${user.email}">kemelka@gmail.com</td>
+                    <td th:each="role : ${user.roles}">
+                        <p th:text="${role}"/>
+                    </td>
+                    <td><a th:href="'/admin/user/edit/' + ${user.id}">Change role</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <section class="admin__user__info">
+            <h3 class="admin-title" id="rego">Region Add Form</h3>
+            <form action="/admin/create/region" method="post" class="admin__form" enctype="multipart/form-data">
+                <div class="form-item">
+                    <span>Capital of region: </span><input name="capital" type="text" placeholder="...">
+                </div>
+                <div class="form-item">
+                    <span>Region: </span><input name="regionFullName" type="text" placeholder="...">
+                </div>
+                <div class="form-item">
+                    <p>Introduction text: </p><textarea name="introDescription" placeholder="...intro..."></textarea>
+                </div>
+                <div class="form-item">
+                    <p>About region: </p><textarea name="aboutRegion" placeholder="...about..."></textarea>
+                </div>
+                <div class="form-item">
+                    <p>History: </p><textarea name="history" placeholder="...history..."></textarea>
+                </div>
+                <div class="form-item">
+                    <p>Climate: </p><textarea name="climate" placeholder="...climate..."></textarea>
+                </div>
+                <div class="form-item">
+                    <p>About tourism in this region: </p><textarea name="tourism" placeholder="...tourism..."></textarea>
+                </div>
+                <label for="fileMain">Select main image</label>
+                <input type="file" id="fileMain" name="fileMain" value="Choose a pic1"><br>
+                <label for="fileIntro">Select intro-image</label>
+                <input type="file" id="fileIntro" name="fileIntro" value="Choose a pic1"><br>
+                <label for="file1">Select map</label>
+                <input type="file" id="file1" name="file1" value="Choose a pic1"><br>
+                <label for="file2">Select picture for "Climate"</label>
+                <input type="file" id="file2" name="file2" value="Choose a pic1"><br>
+                <label for="file3">Select picture for "Tourism"</label>
+                <input type="file" id="file3" name="file3" value="Choose a pic1"><br>
+                <button type="submit">Add region</button><br>
             </form>
-        </th>
-        <th>
-            <a th:href="'/admin/user/edit/' + ${user.id}">Edit</a>
-        </th>
-        <a th:href="'/admin/user/ban/' + ${user.id}"></a>
-        <th>
-            <a th:href="'/user/' + ${user.id}">More info</a>
-        </th>
-        <th th:text="${user.dateOfCreated}"></th>
-    </tr>
-</table>
-<h3>Regions</h3>
-<div th:each="region : ${regions}">
-    <p th:text="${region.regionFullName}"> region</p>
-</div>
-<p>Add new one</p>
-<form action="/admin/create/region" method="post" enctype="multipart/form-data">
-    <input name="capital" type="text" placeholder="Capital"><br>
-    <input name="regionFullName" type="text" placeholder="Region"><br>
-    <textarea name="introDescription" placeholder="Intro text"></textarea><br>
-    <textarea name="aboutRegion" placeholder="About this region"></textarea><br>
-    <textarea name="history" placeholder="History"></textarea><br>
-    <textarea name="climate" placeholder="climate"></textarea><br>
-    <textarea name="tourism" placeholder="tourism"></textarea><br>
-    <label for="fileMain">Select main image</label>
-        <input type="file" id="fileMain" name="fileMain" value="Choose a pic1"><br>
-    <label for="fileMain">Select intro image</label>
-        <input type="file" id="fileIntro" name="fileIntro" value="Choose a pic1"><br>
-    <input type="file" id="file1" name="file1" value="Choose a pic1"><br>
-    <input type="file" id="file2" name="file2" value="Choose a pic1"><br>
-    <input type="file" id="file3" name="file3" value="Choose a pic1"><br>
-    <button type="submit">Add region</button><br>
-</form>
-<br><br><br><br><br><br><br><br><br><br><br>
+        </section>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br>
+</main>
+
 
 <footer th:insert="block/footer :: footer"></footer>
-
-
 <script th:src="@{/js/script.js}"></script>
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -100,3 +146,65 @@
 ></script>
 </body>
 </html>
+
+
+
+
+<!--<br><br><br><br><br><br><br><br><br><br><br>-->
+<!--<h1>Admin panel</h1>-->
+<!--<table border="5">-->
+<!--    <tr>-->
+<!--        <th>Email</th>-->
+<!--        <th>Phone number</th>-->
+<!--        <th>Active</th>-->
+<!--        <th>Role</th>-->
+<!--        <th>Ban</th>-->
+<!--        <th>Edit</th>-->
+<!--        <th>Read more</th>-->
+<!--    </tr>-->
+<!--    <tr th:each="user : ${users}">-->
+<!--        <th th:text="${user.email}"></th>-->
+<!--        <th th:text="${user.phoneNumber}"></th>-->
+<!--&lt;!&ndash;        <th th:text="${user.active}"></th>&ndash;&gt;-->
+<!--        <th th:each="role : ${user.roles}">-->
+<!--            <p th:text="${role}"></p>-->
+<!--        </th>-->
+<!--&lt;!&ndash;        <th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <form th:action="'/admin/user/ban/' + ${user.id}" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="submit" value="Ban">&ndash;&gt;-->
+<!--&lt;!&ndash;            </form>&ndash;&gt;-->
+<!--&lt;!&ndash;        </th>&ndash;&gt;-->
+<!--        <th>-->
+<!--            <a th:href="'/admin/user/edit/' + ${user.id}">Edit</a>-->
+<!--        </th>-->
+<!--        <a th:href="'/admin/user/ban/' + ${user.id}"></a>-->
+<!--        <th>-->
+<!--            <a th:href="'/user/' + ${user.id}">More info</a>-->
+<!--        </th>-->
+<!--        <th th:text="${user.dateOfCreated}"></th>-->
+<!--    </tr>-->
+<!--</table>-->
+<!--<h3>Regions</h3>-->
+<!--<div th:each="region : ${regions}">-->
+<!--    <p th:text="${region.regionFullName}"> region</p>-->
+<!--</div>-->
+<!--<p>Add new one</p>-->
+<!--<form action="/admin/create/region" method="post" enctype="multipart/form-data">-->
+<!--    <input name="capital" type="text" placeholder="Capital"><br>-->
+<!--    <input name="regionFullName" type="text" placeholder="Region"><br>-->
+<!--    <textarea name="introDescription" placeholder="Intro text"></textarea><br>-->
+<!--    <textarea name="aboutRegion" placeholder="About this region"></textarea><br>-->
+<!--    <textarea name="history" placeholder="History"></textarea><br>-->
+<!--    <textarea name="climate" placeholder="climate"></textarea><br>-->
+<!--    <textarea name="tourism" placeholder="tourism"></textarea><br>-->
+<!--    <label for="fileMain">Select main image</label>-->
+<!--        <input type="file" id="fileMain" name="fileMain" value="Choose a pic1"><br>-->
+<!--    <label for="fileMain">Select intro image</label>-->
+<!--        <input type="file" id="fileIntro" name="fileIntro" value="Choose a pic1"><br>-->
+<!--    <input type="file" id="file1" name="file1" value="Choose a pic1"><br>-->
+<!--    <input type="file" id="file2" name="file2" value="Choose a pic1"><br>-->
+<!--    <input type="file" id="file3" name="file3" value="Choose a pic1"><br>-->
+<!--    <button type="submit">Add region</button><br>-->
+<!--</form>-->
+<!--<br><br><br><br><br><br><br><br><br><br><br>-->
+
