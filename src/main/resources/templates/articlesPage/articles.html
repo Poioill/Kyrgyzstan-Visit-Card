@@ -52,7 +52,7 @@
       <div class="all_articles">
         <div class="article" th:each="el : ${art}">
           <img th:src="'/images/' + ${el.images[0].id}" alt="" class="img__article">
-          <h6 class="article__author" th:text="'Article by ' + ${user.name}"></h6>
+          <h6 class="article__author" th:text="'Article by ' + ${el.user.name}"></h6>
           <h2 class="article__title" th:text="${el.title}"></h2>
           <p class="article__text" th:text="${el.description}"></p>
           <a th:href="'/articles/' + ${el.id}" class="article__link">Read more</a>

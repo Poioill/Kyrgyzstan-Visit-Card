@@ -11,7 +11,7 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
         crossorigin="anonymous"/>
   <link rel="stylesheet" th:href="@{/css/base.css}">
-  <link rel="stylesheet" th:href="@{/css/home.css}">
+  <link rel="stylesheet" th:href="@{/css/user-info.css}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile</title>
   <style>
@@ -21,22 +21,41 @@
 <body>
 
 <div th:include="block/header"></div>
-<br><br><br><br><br><br><br><br><br>
-<p>Все статьи(туры) добавленные пользователем [(${user.name})]</p>
-<b>Phone number : [(${user.phoneNumber})]</b>
-<b>Email : [(${user.email})]</b>
-<b>Phone number : [(${user.dateOfCreated})]</b>
-<br><br><br><br>
-<!--[# th:each="item : ${tour}"]-->
-<div class="tours-cards__card" th:each="el : ${tours}">
-  <img th:src="'/images/' + ${el.previewImageId}" alt="" class="tour__card-img" height="200px">
-  <a th:href="'/tours/'+ ${el.id}" class="tours-cards__description">
-    <h3 th:text="${el.title}"/>
-    <p class="tours__text" th:text="${el.region}"/>
-    <h3 th:text="'Guide ' + ${el.user.name}" class="guide"></h3>
-  </a>
-</div>
 
+<main class="main">
+  <div class="main__header-block"></div>
+  <div class="main__wrapper">
+    <div class="user__title">
+      <h1>[(${user.name})]</h1>
+    </div>
+    <div class="user__info-box">
+      <img src="/images/img/culture.png" alt="" class="info-avatar">
+      <div class="info-flex-block">
+        <div class="info__block">
+          <p class="info-title">Phone number: </p>
+          <p class="info-subtitle">[(${user.phoneNumber})]</p>
+        </div>
+        <div class="info__block">
+          <p class="info-title">Email: </p>
+          <p class="info-subtitle"> [(${user.email})]</p>
+        </div>
+        <div class="info__block">
+          <p class="info-title">Registration date</p>
+          <p class="info-subtitle">[(${user.dateOfCreated})]</p>
+        </div>
+      </div>
+    </div>
+    <div class="user__info__art">
+      <p>Added Articles</p>
+      <div class="art__box" th:each="el : ${art}">
+        <a th:href="'/articles/'+ ${el.id}">
+          <h3 th:text="${el.title}">Art</h3>
+        </a>
+      </div>
+    </div>
+    <!--[# th:each="item : ${tour}"]-->
+  </div>
+</main>
 
 <footer th:insert="block/footer :: footer"></footer>
 <script th:src="@{/js/script.js}"></script>

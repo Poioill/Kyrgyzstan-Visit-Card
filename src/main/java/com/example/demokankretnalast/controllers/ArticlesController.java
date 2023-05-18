@@ -3,6 +3,7 @@ package com.example.demokankretnalast.controllers;
 import com.example.demokankretnalast.entity.Articles;
 import com.example.demokankretnalast.entity.Regions;
 import com.example.demokankretnalast.entity.Tour;
+import com.example.demokankretnalast.entity.User;
 import com.example.demokankretnalast.services.ArticlesService;
 import com.example.demokankretnalast.services.RegionService;
 import lombok.RequiredArgsConstructor;
@@ -25,19 +26,20 @@ public class ArticlesController {
     private final RegionService regionService;
 
     @GetMapping("/articles")
-    public String art(@RequestParam(name = "title", required = false) String title,Principal principal, Model model) {
+    public String art(@RequestParam(name = "title", required = false) String title, Model model) {
         model.addAttribute("art", articlesService.listArticles(title));
         Iterable<Regions> region = regionService.findAllRegions();
-        model.addAttribute("user", articlesService.getUserByPrincipal(principal));
         model.addAttribute("region", region);
         return "articlesPage/articles";
     }
 
     @GetMapping("/articles/{id}")
-    public String artInfo(@PathVariable Long id,Articles articles, Model model) {
+    public String artInfo(@PathVariable Long id,
+                          Principal principal,
+                          Model model) {
         model.addAttribute("region", regionService.findAllRegions());
         model.addAttribute("art", articlesService.getArticleById(id));
-        model.addAttribute("images", articles.getImages());
+        model.addAttribute("user", principal);
         return "articlesPage/article-more";
     }
 

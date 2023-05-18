@@ -40,7 +40,7 @@ public class UserService {
         if (userRepo.findByEmail(email) != null) return false;
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.getRoles().add(Role.ROLE_ADMIN);
+        user.getRoles().add(Role.ROLE_USER);
         log.info("Saving new User with email: {}", email);
         userRepo.save(user);
         return true;
@@ -48,6 +48,10 @@ public class UserService {
 
     public List<User> list() {
         return userRepo.findAll();
+    }
+
+    public User findUserByEmail(String email){
+        return userRepo.findByEmail(email);
     }
 
     public void changeUserRoles(User user, Map<String, String> form) {

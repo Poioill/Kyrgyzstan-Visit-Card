@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,10 +32,10 @@
     </div>
     <div class="wrapper__main">
         <div class="title-images">
-            <h1 th:text="${art.title}"/>
+            <h1 th:text="${art.title}"></h1>
             <div class="main__images">
-                <div th:each="img : ${images}" class="col1">
-                    <img th:src="'/images/' + ${img.id}" /><br>
+                <div th:each="img : ${art.images}" class="col1">
+                    <img th:src="'/images/' + ${img.id}" alt="image"><br>
                 </div>
             </div>
         </div>
@@ -45,8 +45,8 @@
         <p th:text="${art.description}"></p>
         <div class="purple-line"></div>
     </div>
-    <span th:text="'Author: ' + ${art.user.name}"></span>
-    <div class="form__edit">
+    <span><a th:href="'/user/' + ${art.user.id}" class="article__author-link">[(${art.user.name})]</a></span>
+    <div class="form__edit" th:if="${art.user} eq ${currentUser}">
         <form th:action="'/articles/delete/'+${art.id}" method="post" class="edit-style">
             <input type="submit" value="Delete"/>
         </form>

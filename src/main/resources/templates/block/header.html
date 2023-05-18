@@ -30,6 +30,9 @@
                     <li class="header__list-item"  sec:authorize="hasAuthority('ROLE_ADMIN')">
                         <a href="/admin" class="list-item">Admin Panel</a>
                     </li>
+                    <li class="header__list-item"  sec:authorize="hasAuthority('ROLE_USER')">
+                        <a th:href="'/user/' + ${currentUser.id}" class="list-item">Profile</a>
+                    </li>
                 </ul>
             </nav>
             <nav class="header__wrap">

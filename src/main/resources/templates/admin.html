@@ -30,7 +30,7 @@
         <div class="admin__box">
             <div class="admin__personal-info box-item">
                 <h3 class="admin-title">Personal Information</h3>
-                <img src="/images/img/culture.png" alt="" class="personal-avatar">
+                <img th:src="@{/img/culture.png}" alt="" class="personal-avatar">
                 <div class="personal__block">
                     <span class="block-title">Name: </span>
                     <a href="/" class="block-info-link" th:text="${usr.name}"></a>
