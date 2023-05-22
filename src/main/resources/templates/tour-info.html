@@ -94,6 +94,8 @@
     </form>
     <a th:href="'/tours/update/' + ${tour.id}" class="update-form edit-style">Update</a>
 </div>
+
+<!--book side-->
 <div id="popup" class="popup">
     <a href="#header" class="popup__area"></a>
     <div class="popup__body">
@@ -102,13 +104,22 @@
                 <img src="/images/svg/close.svg" alt="" class="close-icon">
             </a>
             <p class="popup__title">Book this tour</p>
-            <form action="/book" method="post">
-                <input type="text" name="name" class="popup__input" placeholder="Name"><br>
+            <form action="/book" method="post" sec:authorize="isAuthenticated()">
+                <input disabled th:field="${tour.title}" type="text" name="tourName" class="popup__input" placeholder="Tour name"><br>
+                <input th:field="${currentUser.name}" type="text" name="name" class="popup__input" placeholder="Your full name"><br>
+                <input th:field="${currentUser.email}" type="text" name="email" class="popup__input" placeholder="Email"><br>
+                <input th:field="${currentUser.phoneNumber}" type="text" name="phoneNumber" class="popup__input" placeholder="Phone number"><br>
+                <textarea name="description" class="popup__input popup__input-area"
+                          placeholder="Description"></textarea><br>
+                <button type="submit" class="popup__btn">Send</button>
+            </form>
+            <form action="/book" method="post" sec:authorize="!isAuthenticated()">
+                <input disabled th:field="${tour.title}" type="text" name="tourName" class="popup__input" placeholder="Tour name"><br>
+                <input type="text" name="name" class="popup__input" placeholder="Your full name"><br>
                 <input type="text" name="email" class="popup__input" placeholder="Email"><br>
                 <input type="text" name="phoneNumber" class="popup__input" placeholder="Phone number"><br>
                 <textarea name="description" class="popup__input popup__input-area"
-                          placeholder="Description"></textarea>
-                <br>
+                          placeholder="Description"></textarea><br>
                 <button type="submit" class="popup__btn">Send</button>
             </form>
         </div>

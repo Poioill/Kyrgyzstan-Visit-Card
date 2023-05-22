@@ -18,4 +18,5 @@ public class BookTour {
     private String phoneNumber;
     @Column(columnDefinition = "text")
     private String description;
+    private String tourName;
 }
