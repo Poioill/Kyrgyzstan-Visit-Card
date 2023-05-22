@@ -48,14 +48,23 @@ p, span {
     display: block;
     margin: 20px 0 20px 30px;
 }
+
 .images {
     display: flex;
     justify-content: center;
     gap: 15px;
-    width: 1000px;
-    overflow: hidden;
+    /*width: 1000px;*/
+    /*overflow: hidden;*/
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    width: 100%;
 }
+/*.images::-webkit-scrollbar{*/
+/*    width: 0;*/
+/*}*/
 .col img{
+
     height: 300px;
 }
 .wrapper__img{

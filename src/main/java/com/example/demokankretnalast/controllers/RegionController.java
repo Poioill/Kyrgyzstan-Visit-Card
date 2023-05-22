@@ -22,4 +22,5 @@ public class RegionController {
         model.addAttribute("images", region.getImagesRegion());
         return "regionsPage/region";
     }
+
 }

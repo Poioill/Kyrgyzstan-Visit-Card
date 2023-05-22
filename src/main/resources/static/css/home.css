@@ -50,10 +50,62 @@
 .button__arrow{
     margin: auto;
 }
+.intro__karte{
+    position: absolute;
+}
 .intro__karte img{
     width: 830px;
+    margin-left: 45%;
+}
+.loc1,
+.loc2,
+.loc3,
+.loc4,
+.loc5,
+.loc6,
+.loc7 {
+    position: relative;
+    transition: 1s;
+}
+.loc1:hover,
+.loc2:hover,
+.loc3:hover,
+.loc4:hover,
+.loc5:hover,
+.loc6:hover,
+.loc7:hover{
+    transform: scale(1.5);
+    transform: translateY(-10px);
+}
+.loc1 {
+     bottom: 128px;
+     left: 17%;
+ }
+.loc2 {
+    bottom: 100px;
+    left: 42%;
+}
+.loc3 {
+    bottom: 41px
+}
+.loc4 {
+    top: 84px;
+    left: -9%;
+}
+.loc5 {
+    top: 132px;
+    left: -34%;;
+}
+.loc6 {
+    bottom: 33px;
+    left: -16%;
+}
+.loc7 {
+    bottom: 158px;
+    right: 35%;
 }
 
+/*=================*/
 .main_info-intro{
     position: absolute;
     margin-left: auto;

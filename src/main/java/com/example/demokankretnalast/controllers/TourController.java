@@ -49,14 +49,15 @@ public class TourController {
     }
     @PostMapping("/tours/delete/{id}")
     public String deleteTour(@PathVariable Long id){
-        tourService.deleteTour(id);
+        Tour tour = tourService.getTourById(id);
+        tourService.deleteTour(tour.getId());
         return "redirect:/tours";
     }
 
     @GetMapping("/tours/update/{id}")
-    public String updateTour(@PathVariable Long id, Model model){
+    public String updateTour(@PathVariable Long id,
+                             Model model){
         Tour tour = tourService.getTourById(id);
-        model.addAttribute("images", tour.getImages());
         model.addAttribute("tour", tour);
         return "tour-update";
     }

@@ -12,7 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static java.util.List.*;
 
 @Service
 @Slf4j
@@ -22,7 +26,8 @@ public class ArticlesService {
     private final UserRepo userRepo;
 
     public List<Articles> listArticles(String title) {
-        if (title != null) return articlesRepo.findArticlesByTitleContainingIgnoreCase(title);
+        if (title != null)
+            return articlesRepo.findArticlesByTitleContainingIgnoreCase(title);
         return articlesRepo.findAll();
     }
 

@@ -18,6 +18,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;300;400;600&family=Oswald:wght@300;400;500;600;700&display=swap');
     </style>
+    <link rel="stylesheet" href="../static/css/tour-info.css">
 </head>
 <body>
 <div th:include="block/header"></div>
@@ -100,7 +101,7 @@
             <a href="#header" class="popup__close">
                 <img src="/images/svg/close.svg" alt="" class="close-icon">
             </a>
-            <p class="popup__title">Add new article</p>
+            <p class="popup__title">Add new tour</p>
             <form action="/tours/add" method="post" enctype="multipart/form-data">
                 <input type="text" name="title" class="popup__input" placeholder="Name"><br>
                 <input type="text" name="title" class="popup__input" placeholder="Email"><br>
