@@ -54,8 +54,6 @@ public class ArticlesService {
             art.addImageToArticle(img3);
         }
         log.info("Saving new Article. Title: {}; Author email: {}", art.getTitle(), art.getUser().getEmail());
-        Articles artFromDB = articlesRepo.save(art);
-        artFromDB.setPreviewImageId(artFromDB.getImages().get(0).getId());
         articlesRepo.save(art);
     }
 

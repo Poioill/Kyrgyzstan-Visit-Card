@@ -9,6 +9,7 @@ import com.example.demokankretnalast.repositories.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ import java.util.List;
 public class TourService {
     private final TourRepo tourRepo;
     private final UserRepo userRepo;
+    private final ImageRepo imageRepo;
 
     public List<Tour> listTours(String title) {
         if (title != null) return tourRepo.findByTitleContainingIgnoreCase(title);
@@ -50,8 +52,6 @@ public class TourService {
             tour.addImageToProduct(img3);
         }
         log.info("Saving new Tour. Title: {}; Author email: {}", tour.getTitle(), tour.getUser().getEmail());
-        Tour tourFromDB = tourRepo.save(tour);
-        tourFromDB.setPreviewImageId(tourFromDB.getImages().get(0).getId());
         tourRepo.save(tour);
     }
 
@@ -71,6 +71,11 @@ public class TourService {
     }
     public void deleteTour(Long id){
         tourRepo.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteImages(Tour tour){
+        imageRepo.deleteByTourId(tour.getId());
     }
 
     public Tour getTourById(Long id) {

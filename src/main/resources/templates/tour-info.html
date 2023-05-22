@@ -101,12 +101,12 @@
             <a href="#header" class="popup__close">
                 <img src="/images/svg/close.svg" alt="" class="close-icon">
             </a>
-            <p class="popup__title">Add new tour</p>
-            <form action="/tours/add" method="post" enctype="multipart/form-data">
-                <input type="text" name="title" class="popup__input" placeholder="Name"><br>
-                <input type="text" name="title" class="popup__input" placeholder="Email"><br>
-                <input type="text" name="title" class="popup__input" placeholder="Phone number"><br>
-                <textarea type="text" name="description" class="popup__input popup__input-area"
+            <p class="popup__title">Book this tour</p>
+            <form action="/book" method="post">
+                <input type="text" name="name" class="popup__input" placeholder="Name"><br>
+                <input type="text" name="email" class="popup__input" placeholder="Email"><br>
+                <input type="text" name="phoneNumber" class="popup__input" placeholder="Phone number"><br>
+                <textarea name="description" class="popup__input popup__input-area"
                           placeholder="Description"></textarea>
                 <br>
                 <button type="submit" class="popup__btn">Send</button>
