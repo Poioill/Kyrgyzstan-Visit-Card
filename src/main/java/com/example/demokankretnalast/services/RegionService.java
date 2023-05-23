@@ -80,4 +80,5 @@ public class RegionService {
     public Regions getRegionById(Long id) {
         return regionRepo.findById(id).orElseThrow(null);
     }
+
 }

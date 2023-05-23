@@ -75,7 +75,7 @@
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}">1</td>
                     <td><a th:href="'/user/' + ${user.id}">[(${user.name})]</a></td>
-                    <td th:text="${user.email}">kemelka@gmail.com</td>
+                    <td th:text="${user.email}"></td>
                     <td th:each="role : ${user.roles}">
                         <p th:text="${role}"/>
                     </td>
@@ -121,6 +121,64 @@
                 <button type="submit">Add region</button><br>
             </form>
         </section>
+<!--        add sightseeing      -->
+        <!--[# th:each="item : ${tour}"]-->
+        <section class="admin__user__info">
+            <h3 class="admin-title">Add sightseeing for region</h3>
+            <form th:object="${region}" action="/admin/create/sightseeing" method="post" class="admin__form">
+                <div class="form-item">
+                    <span>Choose a region: </span>
+                    <select name="select" size="1">
+                        <option disabled selected value="">--</option>
+                        <div th:each="region : ${region}">
+                            <option th:value="${region.id}" th:text="${region.regionFullName}"></option>
+                        </div>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <span>Name of sightseeing: </span>
+                    <input name="titlePlace" type="text" placeholder="...">
+                </div>
+                <div class="form-item">
+                    <span>Description: </span>
+                    <textarea name="historyPlace" placeholder="...history of this sightseeing..."></textarea>
+                </div>
+                <button type="submit">Add sightseeing</button><br>
+            </form>
+        </section>
+
+
+        <section class="admin__booking">
+            <div class="admin__user__info">
+                <div class="admin-title">Tours which was booked</div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Tour</th>
+                        <th>Client Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Client's note</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="book : ${book}">
+                        <td th:text="${book.tourName}" class="book__td"></td>
+                        <td th:text="${book.name}" class="book__td"></td>
+                        <td th:text="${book.email}" class="book__td"></td>
+                        <td th:text="${book.phoneNumber}" class="book__td"></td>
+                        <td th:text="${book.description}" class="book-desc"></td>
+                        <td>
+                            <form th:action="'/book/delete/' + ${book.id}" method="post" class="edit-style">
+                                <input type="submit" value="Delete"/>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
 
     <br><br><br><br><br><br><br><br><br><br>
@@ -146,65 +204,3 @@
 ></script>
 </body>
 </html>
-
-
-
-
-<!--<br><br><br><br><br><br><br><br><br><br><br>-->
-<!--<h1>Admin panel</h1>-->
-<!--<table border="5">-->
-<!--    <tr>-->
-<!--        <th>Email</th>-->
-<!--        <th>Phone number</th>-->
-<!--        <th>Active</th>-->
-<!--        <th>Role</th>-->
-<!--        <th>Ban</th>-->
-<!--        <th>Edit</th>-->
-<!--        <th>Read more</th>-->
-<!--    </tr>-->
-<!--    <tr th:each="user : ${users}">-->
-<!--        <th th:text="${user.email}"></th>-->
-<!--        <th th:text="${user.phoneNumber}"></th>-->
-<!--&lt;!&ndash;        <th th:text="${user.active}"></th>&ndash;&gt;-->
-<!--        <th th:each="role : ${user.roles}">-->
-<!--            <p th:text="${role}"></p>-->
-<!--        </th>-->
-<!--&lt;!&ndash;        <th>&ndash;&gt;-->
-<!--&lt;!&ndash;            <form th:action="'/admin/user/ban/' + ${user.id}" method="post">&ndash;&gt;-->
-<!--&lt;!&ndash;                <input type="submit" value="Ban">&ndash;&gt;-->
-<!--&lt;!&ndash;            </form>&ndash;&gt;-->
-<!--&lt;!&ndash;        </th>&ndash;&gt;-->
-<!--        <th>-->
-<!--            <a th:href="'/admin/user/edit/' + ${user.id}">Edit</a>-->
-<!--        </th>-->
-<!--        <a th:href="'/admin/user/ban/' + ${user.id}"></a>-->
-<!--        <th>-->
-<!--            <a th:href="'/user/' + ${user.id}">More info</a>-->
-<!--        </th>-->
-<!--        <th th:text="${user.dateOfCreated}"></th>-->
-<!--    </tr>-->
-<!--</table>-->
-<!--<h3>Regions</h3>-->
-<!--<div th:each="region : ${regions}">-->
-<!--    <p th:text="${region.regionFullName}"> region</p>-->
-<!--</div>-->
-<!--<p>Add new one</p>-->
-<!--<form action="/admin/create/region" method="post" enctype="multipart/form-data">-->
-<!--    <input name="capital" type="text" placeholder="Capital"><br>-->
-<!--    <input name="regionFullName" type="text" placeholder="Region"><br>-->
-<!--    <textarea name="introDescription" placeholder="Intro text"></textarea><br>-->
-<!--    <textarea name="aboutRegion" placeholder="About this region"></textarea><br>-->
-<!--    <textarea name="history" placeholder="History"></textarea><br>-->
-<!--    <textarea name="climate" placeholder="climate"></textarea><br>-->
-<!--    <textarea name="tourism" placeholder="tourism"></textarea><br>-->
-<!--    <label for="fileMain">Select main image</label>-->
-<!--        <input type="file" id="fileMain" name="fileMain" value="Choose a pic1"><br>-->
-<!--    <label for="fileMain">Select intro image</label>-->
-<!--        <input type="file" id="fileIntro" name="fileIntro" value="Choose a pic1"><br>-->
-<!--    <input type="file" id="file1" name="file1" value="Choose a pic1"><br>-->
-<!--    <input type="file" id="file2" name="file2" value="Choose a pic1"><br>-->
-<!--    <input type="file" id="file3" name="file3" value="Choose a pic1"><br>-->
-<!--    <button type="submit">Add region</button><br>-->
-<!--</form>-->
-<!--<br><br><br><br><br><br><br><br><br><br><br>-->
-

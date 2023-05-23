@@ -26,10 +26,13 @@ public class Tour {
     private Integer age;
     @Column(columnDefinition = "text",length = 10000)
     private String notes;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy = "tour")
     private List<Img> images = new ArrayList<>();
+
     private Long previewImageId;
+
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn
     private User user;

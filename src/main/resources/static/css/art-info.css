@@ -56,9 +56,11 @@ h1 {
 }
 .main__images {
     display: flex;
-    gap: 30px;
-    overflow: hidden;
-    max-width: 1000px;
+    justify-content: center;
+    gap: 15px;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
 }
 .col1 img{
     height: 350px;

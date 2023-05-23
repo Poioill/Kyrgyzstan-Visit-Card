@@ -19,7 +19,8 @@ public class Sightseeing {
     private String titlePlace;
     @Column(columnDefinition = "text")
     private String historyPlace;
-//
-//    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-//    private Sightseeing sightseeing;
+
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn
+    private Regions regions;
 }

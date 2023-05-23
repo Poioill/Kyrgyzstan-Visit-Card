@@ -49,11 +49,18 @@
       <p>Added Articles</p>
       <div class="art__box" th:each="el : ${art}">
         <a th:href="'/articles/'+ ${el.id}">
-          <h3 th:text="${el.title}">Art</h3>
+          <h3 th:text="${el.title}"></h3>
         </a>
       </div>
     </div>
-    <!--[# th:each="item : ${tour}"]-->
+    <div class="user__info__art" th:if="${user.roles[0]} == 'ROLE_ADMIN'">
+      <p>Added Tours</p>
+      <div class="art__box" th:each="el : ${tour}">
+        <a th:href="'/tours/'+ ${el.id}">
+          <h3 th:text="${el.title}"></h3>
+        </a>
+      </div>
+    </div>
   </div>
 </main>
 

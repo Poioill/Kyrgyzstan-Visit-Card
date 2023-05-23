@@ -40,9 +40,9 @@ public class Regions {
     private List<ImgRegion> imagesRegion = new ArrayList<>();
 
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
-//            mappedBy = "sightseeing")
-//    private List<Sightseeing> sightseeings = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            mappedBy = "regions")
+    private List<Sightseeing> sightseeing = new ArrayList<>();
 
     public void addImageToRegion(ImgRegion imgRegion){
         imgRegion.setRegions(this);

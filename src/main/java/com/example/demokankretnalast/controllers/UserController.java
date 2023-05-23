@@ -21,6 +21,7 @@ public class UserController {
     public String userInfo(@PathVariable("user") User user, Model model){
         model.addAttribute("user", user);
         model.addAttribute("art", user.getArticles());
+        model.addAttribute("tour", user.getTours());
         model.addAttribute("region",regionService.findAllRegions());
         return "user-info";
     }

@@ -19,6 +19,7 @@ public class RegionController {
         Iterable<Regions> regions = regionService.findAllRegions();
         model.addAttribute("region", regions);
         model.addAttribute("reg", region);
+        model.addAttribute("sit", region.getSightseeing());
         model.addAttribute("images", region.getImagesRegion());
         return "regionsPage/region";
     }

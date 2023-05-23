@@ -77,10 +77,4 @@ public class TourController {
         return "redirect:/tours/{id}";
     }
 
-
-    @PostMapping("/book")
-    public String booking(BookTour bookTour){
-        bookService.saveBooking(bookTour);
-        return "redirect:/tours";
-    }
 }
