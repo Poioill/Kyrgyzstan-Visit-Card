@@ -88,7 +88,8 @@
     </div>
     <div class="blue-line"></div>
 </div>
-<div class="form__edit" th:if="${tour.user} eq ${currentUser}">
+<!--sec:authorize="hasAuthority('ROLE_ADMIN')"-->
+<div class="form__edit" sec:authorize="hasAuthority('ROLE_ADMIN')">
     <form th:action="'/tours/delete/' + ${tour.id}" method="post" class="edit-style">
         <input type="submit" value="Delete"/>
     </form>
@@ -105,7 +106,7 @@
             </a>
             <p class="popup__title">Book this tour</p>
             <form action="/book" method="post" sec:authorize="isAuthenticated()">
-                <input disabled th:field="${tour.title}" type="text" name="tourName" class="popup__input" placeholder="Tour name"><br>
+                <input type="text" name="tourName" class="popup__input" placeholder="Tour name"><br>
                 <input th:field="${currentUser.name}" type="text" name="name" class="popup__input" placeholder="Your full name"><br>
                 <input th:field="${currentUser.email}" type="text" name="email" class="popup__input" placeholder="Email"><br>
                 <input th:field="${currentUser.phoneNumber}" type="text" name="phoneNumber" class="popup__input" placeholder="Phone number"><br>
@@ -114,7 +115,7 @@
                 <button type="submit" class="popup__btn">Send</button>
             </form>
             <form action="/book" method="post" sec:authorize="!isAuthenticated()">
-                <input disabled th:field="${tour.title}" type="text" name="tourName" class="popup__input" placeholder="Tour name"><br>
+                <input type="text" name="tourName" class="popup__input" placeholder="Tour name"><br>
                 <input type="text" name="name" class="popup__input" placeholder="Your full name"><br>
                 <input type="text" name="email" class="popup__input" placeholder="Email"><br>
                 <input type="text" name="phoneNumber" class="popup__input" placeholder="Phone number"><br>

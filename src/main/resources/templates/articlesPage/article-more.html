@@ -30,12 +30,15 @@
             </div>
         </div>
     </div>
-    <div class="wrapper__main">
+    <div class="wrapper__img">
         <div class="title-images">
             <h1 th:text="${art.title}"></h1>
             <div class="main__images">
-                <div th:each="img : ${art.images}" class="col1">
-                    <img th:src="'/images/' + ${img.id}" alt="image"><br>
+                <div class="col1">
+                    <img th:src="'/images/' + ${art.images[1].id}" alt="image"><br>
+                </div>
+                <div class="col1">
+                    <img th:src="'/images/' + ${art.images[2].id}" alt="image"><br>
                 </div>
             </div>
         </div>

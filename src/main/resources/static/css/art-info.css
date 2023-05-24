@@ -52,7 +52,13 @@ h1 {
 }
 /* --------------------------- */
 .title-images{
-    margin: 20px 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 73px;
+    color: #12382d;
+    display: block;
+    margin: 20px 0 20px 30px;
 }
 .main__images {
     display: flex;
@@ -62,6 +68,11 @@ h1 {
     flex-wrap: nowrap;
     overflow-x: scroll;
 }
+.wrapper__img{
+    width: 1000px;
+    margin: 0 auto;
+}
+
 .col1 img{
     height: 350px;
 }
